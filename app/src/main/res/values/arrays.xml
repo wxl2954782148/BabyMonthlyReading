@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="splash_img">
+        <item>@drawable/splash</item>
+    </array>
+</resources>
