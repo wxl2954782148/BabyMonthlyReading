@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">BabyMonthlyReading</string>
+    <string name="app_name">宝贝月读</string>
     <string name="img">img</string>
+    <string name="main">我的</string>
+    <string name="shopping_cart">购物车</string>
+    <string name="search_hint">搜索书名/关键字/类型</string>
+    <string name="cancel">取消</string>
+    <string name="search_history">搜索历史</string>
 </resources>
