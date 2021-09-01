@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Button xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/btn_item_search_hint"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text_item_search_hint"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/search_hint_item_bg"
-    android:outlineProvider="none"
-    />
+    android:ellipsize="end"
+    android:maxLines="1"
+    android:paddingVertical="5dp"
+    android:paddingHorizontal="10dp"
+    android:textAlignment="center"
+    android:textSize="@dimen/search_view_hint_size" />

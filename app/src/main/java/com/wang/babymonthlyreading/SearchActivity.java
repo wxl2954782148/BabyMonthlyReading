@@ -17,7 +17,9 @@ import android.widget.TextView;
 import com.wang.babymonthlyreading.adapter.SearchHintAdapter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -43,25 +45,34 @@ public class SearchActivity extends AppCompatActivity {
         });
         //搜索历史相关
         RecyclerView searchHistoryRecycle = findViewById(R.id.recycle_search_history);
-        GridLayoutManager manager = new GridLayoutManager(this, 3);
-        searchHistoryRecycle.setLayoutManager(manager);
+        searchHistoryRecycle.setLayoutManager(new GridLayoutManager(this, 3));
         searchHistoryAdapter = new SearchHintAdapter(getSearchHistoryData());
         searchHistoryRecycle.setAdapter(searchHistoryAdapter);
-        searchHistoryRecycle.addItemDecoration(new SearchHintAdapter.SpaceItemDecoration(15));
+        searchHistoryRecycle.addItemDecoration(new SearchHintAdapter.SpaceItemDecoration(20));
+        //清空搜索历史
         ImageButton clearAllImgB = findViewById(R.id.imgb_clear_all);
         clearAllImgB.setOnClickListener(v->{
             searchHistoryAdapter.removeAll();
         });
+
+        //热门搜索相关
+        RecyclerView hotSearchRecycle = findViewById(R.id.recycle_hot_search);
+        hotSearchRecycle.setLayoutManager(new GridLayoutManager(this, 3));
+        hotSearchRecycle.setAdapter(new SearchHintAdapter(getHotSearchData()));
+        hotSearchRecycle.addItemDecoration(new SearchHintAdapter.SpaceItemDecoration(20));
     }
+
+
 
     /**
      * 搜索框的监听事件
+     * 1. 添加到搜索历史
+     * 2. 跳转到指定页面 TODO
      */
     SearchView.OnQueryTextListener listener= new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
             searchHistoryAdapter.addItem(query);
-            bookSearch.clearFocus();
             return true;
         }
 
@@ -71,6 +82,10 @@ public class SearchActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * 获取搜索历史数据
+     * @return
+     */
     private List<String> getSearchHistoryData() {
         List<String> searchHistory = new ArrayList<>();
         searchHistory.add("少儿启蒙");
@@ -79,10 +94,23 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     /**
+     * 获取热门搜索数据
+     * @return
+     */
+    private List<String> getHotSearchData() {
+        List<String> hotSearch = new ArrayList<>();
+        hotSearch.add("逻辑思维");
+        hotSearch.add("启蒙");
+        hotSearch.add("算术");
+        hotSearch.add("认知");
+        hotSearch.add("心理学");
+        return hotSearch;
+    }
+
+    /**
      * 修改SearchView的样式
      * 1. EditText中的字体大小
      * 2. 取消下划线
-     *
      * @param searchView
      */
     private void updateSearchStyle(SearchView searchView) {
