@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable-v24/banner_point_item_focus.xml" value="0.28229166666666666" />
+        <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/banner_point_item_bg.xml" value="0.28229166666666666" />
+        <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/banner_point_item_state.xml" value="0.28229166666666666" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ic_delete.xml" value="0.28229166666666666" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/search_divider.xml" value="0.28229166666666666" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/search_hint_item_bg.xml" value="0.28229166666666666" />

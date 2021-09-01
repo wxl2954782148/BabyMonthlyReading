@@ -2,7 +2,6 @@ package com.wang.babymonthlyreading.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -12,7 +11,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
-import com.wang.babymonthlyreading.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +35,17 @@ public class BannerPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         context = container.getContext();
         ImageView imageView = createImageView(context, getRelPosition(position));
+        imageView.setOnClickListener(onClickListener);
         container.addView(imageView);
         return imageView;
     }
 
+    /**
+     * 视图点击事件 跳转到详情页面 TODO
+     */
+    View.OnClickListener onClickListener = v -> {
+
+    };
 
     @Override
     public int getCount() {
