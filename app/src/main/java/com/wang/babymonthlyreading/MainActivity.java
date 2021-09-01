@@ -3,10 +3,12 @@ package com.wang.babymonthlyreading;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,12 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.wang.babymonthlyreading.adapter.BannerPagerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-
-    private TextView titleText;
-    private Toolbar mainBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +33,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        titleText = findViewById(R.id.text_title);
-        mainBar = findViewById(R.id.tbar_main);
+        // --> 顶部选项菜单相关
+        Toolbar mainBar = findViewById(R.id.tbar_main);
         setSupportActionBar(mainBar);
         //取消原来的ActionBar的标题
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
+        // -->轮播图相关
+        ViewPager bannerPager = findViewById(R.id.vp_banner);
+        bannerPager.setAdapter(new BannerPagerAdapter(getBannerData()));
+
     }
+
+
 
     /**
      * 菜单项的被选中事件 TODO
@@ -66,6 +75,27 @@ public class MainActivity extends AppCompatActivity {
     public static void StartMainActivity(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
+    }
+
+    /**
+     * 获取轮播图相关信息
+     * @return
+     */
+    private List<BannerPagerAdapter.BannerItemInfo> getBannerData() {
+        List<BannerPagerAdapter.BannerItemInfo> bannerItemInfoList = new ArrayList<>();
+        int[] itemIdArr = getResources().getIntArray(R.array.banner_item_id);
+        TypedArray typedArray = getResources().obtainTypedArray(R.array.banner_drawable_list);
+        if (itemIdArr.length != typedArray.length())
+            throw new ArrayIndexOutOfBoundsException("Array resource \"banner_item_id\" " +
+                    "and \"banner_drawable_list\" of length is not equal");
+
+        for (int i = 0; i < typedArray.length(); i++) {
+            BannerPagerAdapter.BannerItemInfo itemInfo =
+                    new BannerPagerAdapter.BannerItemInfo(itemIdArr[i], typedArray.getDrawable(i));
+            bannerItemInfoList.add(itemInfo);
+        }
+        typedArray.recycle();
+        return bannerItemInfoList;
     }
 
 }

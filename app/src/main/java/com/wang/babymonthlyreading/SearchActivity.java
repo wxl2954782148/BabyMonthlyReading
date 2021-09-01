@@ -34,16 +34,16 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        //搜索框相关
+        // -->搜索框相关
         bookSearch = findViewById(R.id.search_book);
         updateSearchStyle(bookSearch);
         bookSearch.setOnQueryTextListener(listener);
-        //取消按钮相关
+        // -->取消按钮相关
         Button cancelBtn = findViewById(R.id.btn_cancel);
         cancelBtn.setOnClickListener(v->{
             finish();
         });
-        //搜索历史相关
+        // -->搜索历史相关
         RecyclerView searchHistoryRecycle = findViewById(R.id.recycle_search_history);
         searchHistoryRecycle.setLayoutManager(new GridLayoutManager(this, 3));
         searchHistoryAdapter = new SearchHintAdapter(getSearchHistoryData());
@@ -55,7 +55,7 @@ public class SearchActivity extends AppCompatActivity {
             searchHistoryAdapter.removeAll();
         });
 
-        //热门搜索相关
+        // -->热门搜索相关
         RecyclerView hotSearchRecycle = findViewById(R.id.recycle_hot_search);
         hotSearchRecycle.setLayoutManager(new GridLayoutManager(this, 3));
         hotSearchRecycle.setAdapter(new SearchHintAdapter(getHotSearchData()));

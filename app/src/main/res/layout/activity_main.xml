@@ -31,22 +31,34 @@
         android:id="@+id/linear_main_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/search_view_bg"
-        android:paddingVertical="8dp"
-        android:paddingHorizontal="15dp"
-        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/search_view_bg"
         android:onClick="onClick"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbar_main">
+        app:layout_constraintTop_toBottomOf="@+id/tbar_main"
+        tools:ignore="TouchTargetSizeCheck">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawablePadding="10dp"
             android:text="@string/search_hint"
             android:textColor="#999999"
             android:textSize="@dimen/search_view_hint_size"
-            android:drawablePadding="10dp"
             app:drawableLeftCompat="@drawable/ico_search" />
     </LinearLayout>
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_banner"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_main_search"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

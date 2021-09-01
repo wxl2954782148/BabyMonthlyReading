@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--闪屏页图片-->
     <array name="splash_img">
         <item>@drawable/splash</item>
+    </array>
+
+    <!--轮播图数据-->
+    <integer-array name="banner_item_id">
+        <item>1001</item>
+        <item>1002</item>
+        <item>1003</item>
+        <item>1004</item>
+    </integer-array>
+    <array name="banner_drawable_list">
+        <item>@drawable/banner1</item>
+        <item>@drawable/banner2</item>
+        <item>@drawable/banner3</item>
+        <item>@drawable/banner4</item>
     </array>
 </resources>
