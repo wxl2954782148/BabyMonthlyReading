@@ -13,20 +13,28 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.wang.babymonthlyreading.R;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * 搜索页面搜索历史、热门搜索RecyclerView适配器
  */
 public class SearchHintAdapter extends RecyclerView.Adapter<SearchHintAdapter.ViewHolder> {
-    List<String> infoList;
+    /**
+     * 由于搜索历史需要添加到头部，LinkedList更加高效
+     */
+    private final LinkedList<String> infoList;
     private Context context;
 
-    public SearchHintAdapter(List<String> infoList) {
-        this.infoList = infoList;
+
+    /**
+     * 只会取infos中前9个元素
+     *
+     * @param infos
+     */
+    public SearchHintAdapter(List<String> infos) {
+        this.infoList = new LinkedList<>();
+        addAll2InfoList(infos);
     }
 
     @NonNull
@@ -44,32 +52,25 @@ public class SearchHintAdapter extends RecyclerView.Adapter<SearchHintAdapter.Vi
     }
 
     /**
-     * 向RecyclerView中添加一条数据
+     * 向RecyclerView中添加一条数据, 添加到头部
      * 如果数据已存在，则不添加
+     * 如果infoList长度大于9，那么删除最后一条数据
+     * <p>
+     * 使用notifyItemInserted(0);刷新数据集的时候，第二行高度会变大，原因位置
      *
      * @param info
      */
-    public void addItem(String info) {
-        if (infoList.contains(info)) {
+    @SuppressLint("NotifyDataSetChanged")
+    public void addFirst(String info) {
+        if (infoList.contains(info))
             return;
-        }
-        infoList.add(info);
-        notifyItemChanged(infoList.size() - 1);
+        addFirst2InfoList(info);
+        notifyDataSetChanged();
     }
 
     /**
-     * 向RecyclerView中指定位置插入一条数据
-     * 如果数据已存在，则不添加
-     * @param info
-     * @param index
+     * 移除所有数据
      */
-    public void insertItem(String info, int index){
-        if (infoList.contains(info)) {
-            return;
-        }
-        infoList.add(index, info);
-        notifyItemInserted(index);
-    }
     @SuppressLint("NotifyDataSetChanged")
     public void removeAll() {
         infoList.clear();
@@ -78,7 +79,37 @@ public class SearchHintAdapter extends RecyclerView.Adapter<SearchHintAdapter.Vi
 
     @Override
     public int getItemCount() {
-        return infoList == null ? 0 : infoList.size();
+        return infoList.size();
+    }
+
+    /**
+     * 把{infos}集合中的元素添加到infoList
+     * 如果infos集合长度大于9，那么之取前面的9个
+     * 这是因为搜索历史、热门搜索只需要显示前面的9个item
+     *
+     * @param infos
+     */
+    private void addAll2InfoList(@NonNull List<String> infos) {
+        if (infos.size() <= 9) {
+            infoList.addAll(infos);
+            return;
+        }
+        for (int i = 0; i <= 9; i++) {
+            infoList.add(infos.get(i));
+        }
+    }
+
+    /**
+     * 向infoList集合头部添加一个元素
+     * 如果infoList长度大于9，那么删除最后一个元素
+     *
+     * @param info
+     */
+    private void addFirst2InfoList(@NonNull String info) {
+        infoList.addFirst(info);
+        if (infoList.size() > 9) {
+            infoList.removeLast();
+        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -93,6 +124,12 @@ public class SearchHintAdapter extends RecyclerView.Adapter<SearchHintAdapter.Vi
 
     /**
      * 设置每个item的间距
+     * 每一行三个item:
+     * 第一个元素设置右外边距为space * 2/3
+     * 第二个元素设置左外边距为space/2， 右外边距为x/2
+     * 第三个元素设置左外边距为space * 2/3
+     *
+     * @link {https://wsl-1258519056.cos.ap-guangzhou.myqcloud.com/img/image-20210901111154841.png}
      */
     public static class SpaceItemDecoration extends RecyclerView.ItemDecoration {
         private final int space;

@@ -19,6 +19,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * 首页轮播图ViewPager适配器
+ */
 public class BannerPagerAdapter extends PagerAdapter {
     List<BannerItemInfo> infoList;
     private Context context;
@@ -35,7 +38,7 @@ public class BannerPagerAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         context = container.getContext();
         ImageView imageView = createImageView(context, getRelPosition(position));
-        imageView.setOnClickListener(onClickListener);
+        imageView.setOnClickListener(onItemClickListener);
         container.addView(imageView);
         return imageView;
     }
@@ -43,7 +46,7 @@ public class BannerPagerAdapter extends PagerAdapter {
     /**
      * 视图点击事件 跳转到详情页面 TODO
      */
-    View.OnClickListener onClickListener = v -> {
+    View.OnClickListener onItemClickListener = v -> {
 
     };
 

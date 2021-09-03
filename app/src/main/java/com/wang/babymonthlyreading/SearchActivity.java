@@ -67,15 +67,14 @@ public class SearchActivity extends AppCompatActivity {
     /**
      * 搜索框的监听事件
      * 1. 添加到搜索历史
-     * 2. 跳转到指定页面 TODO
+     * TODO 2. 跳转到指定页面
      */
     SearchView.OnQueryTextListener listener= new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
-            searchHistoryAdapter.addItem(query);
+            searchHistoryAdapter.addFirst(query);
             return true;
         }
-
         @Override
         public boolean onQueryTextChange(String newText) {
             return false;
@@ -126,6 +125,10 @@ public class SearchActivity extends AppCompatActivity {
         layout.setBackground(null);
     }
 
+    /**
+     * 从其它Activity启动SearchActivity
+     * @param context
+     */
     public static void startSearchActivity(Context context) {
         Intent intent = new Intent(context, SearchActivity.class);
         context.startActivity(intent);

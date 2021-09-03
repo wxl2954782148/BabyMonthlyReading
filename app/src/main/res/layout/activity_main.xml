@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
 
@@ -14,16 +15,17 @@
         android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:logo="@mipmap/logo"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:logo="@mipmap/logo">
+
         <TextView
             android:id="@+id/text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
             android:layout_gravity="center"
+            android:text="@string/app_name"
             android:textColor="#333333"
-            android:textSize="22sp"/>
+            android:textSize="@dimen/tool_bar_title_size" />
     </androidx.appcompat.widget.Toolbar>
 
 
@@ -37,7 +39,8 @@
         android:onClick="onClick"
         android:paddingHorizontal="15dp"
         android:paddingVertical="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/tbar_main"
         tools:ignore="TouchTargetSizeCheck">
 
@@ -48,16 +51,18 @@
             android:text="@string/search_hint"
             android:textColor="#999999"
             android:textSize="@dimen/search_view_hint_size"
-            app:drawableLeftCompat="@drawable/ico_search" />
+            app:drawableLeftCompat="@drawable/ico_search"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_banner"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:background="@color/purple_200"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linear_main_search"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -67,10 +72,69 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:orientation="horizontal"
         android:background="@color/transparent"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/vp_banner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.41" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.43" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="10dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="10dp" />
+
+    <TextView
+        android:id="@+id/text_custom_exclusive_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/custom_exclusive"
+        android:textSize="24sp"
+        android:textColor="#333333"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toTopOf="@+id/guideline11" />
+
+    <ImageButton
+        android:id="@+id/imgb_custom_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:contentDescription="@string/img"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintTop_toTopOf="@+id/guideline11"
+        app:srcCompat="@drawable/ic_more"
+        tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_custom_exclusive"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+        app:layout_constraintStart_toStartOf="@+id/guideline_left"
+        app:layout_constraintTop_toBottomOf="@+id/text_custom_exclusive_title" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

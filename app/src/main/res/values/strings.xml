@@ -8,4 +8,10 @@
     <string name="search_history">搜索历史</string>
     <string name="hot_search">热门搜索</string>
     <string name="banner_img">banner_img</string>
+    <string name="custom_exclusive">定制专属</string>
+    <string name="no_custom_book_tips">没有定制书单\n去定制专属你的书单吧！</string>
+    <string name="custom_books">定制书单</string>
+    <string name="book_desc">比利时心灵成长…</string>
+    <string name="_199_00">￥199.00</string>
+    <string name="format_book_price">￥ %.2f</string>
 </resources>

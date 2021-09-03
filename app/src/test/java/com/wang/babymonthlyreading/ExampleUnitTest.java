@@ -4,6 +4,10 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import android.icu.number.NumberFormatter;
+
+import java.util.Locale;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -12,8 +16,8 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        float a = 1.5f;
-        int b = (int) a;
-        System.out.println(b);
+        float a = 1.51993f;
+
+        System.out.println(String.format(Locale.CHINA,"￥ %.2f", 120.315));
     }
 }

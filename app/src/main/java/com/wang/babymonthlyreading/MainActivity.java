@@ -21,6 +21,8 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.wang.babymonthlyreading.adapter.BannerPagerAdapter;
+import com.wang.babymonthlyreading.fragment.CustomBookInfoFragment;
+import com.wang.babymonthlyreading.fragment.CustomBookTipsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,8 +68,14 @@ public class MainActivity extends AppCompatActivity {
         View childAt = pointLayout.getChildAt(0);
         childAt.setBackgroundResource(R.drawable.banner_point_item_focus);
 
-    }
+        //-->专属定制、定制书单相关
+        getSupportFragmentManager()
+                .beginTransaction()
+//                .add(R.id.fragment_container_custom_exclusive, new CustomBookTipsFragment())
+                .add(R.id.fragment_container_custom_exclusive, new CustomBookInfoFragment())
+                .commit();
 
+    }
 
     /**
      * 菜单项的被选中事件 TODO
