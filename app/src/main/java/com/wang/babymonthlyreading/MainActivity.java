@@ -1,10 +1,5 @@
 package com.wang.babymonthlyreading;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -17,10 +12,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
-import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.wang.babymonthlyreading.adapter.BannerPagerAdapter;
+import com.wang.babymonthlyreading.adapter.CustomBookAdapter;
+import com.wang.babymonthlyreading.data.TestData;
 import com.wang.babymonthlyreading.fragment.CustomBookInfoFragment;
 import com.wang.babymonthlyreading.fragment.CustomBookTipsFragment;
 
@@ -56,25 +57,38 @@ public class MainActivity extends AppCompatActivity {
 
         // -->轮播图相关
         bannerPager = findViewById(R.id.vp_banner);
-        bannerPagerAdapter = new BannerPagerAdapter(getBannerData());
+        List<BannerPagerAdapter.BannerItemInfo> bannerData = TestData.getBannerData(this);
+        bannerPagerAdapter = new BannerPagerAdapter(bannerData);
         bannerPager.setAdapter(bannerPagerAdapter);
         bannerPager.setCurrentItem(0);
         setAutoShuffling();
 
         // -->轮播图指示器相关
         pointLayout = findViewById(R.id.linear_banner_point);
-        addPointView(pointLayout, this);
+        addPointView(pointLayout, this, bannerData.size());
         setPointWithBanner(bannerPager);
         View childAt = pointLayout.getChildAt(0);
         childAt.setBackgroundResource(R.drawable.banner_point_item_focus);
 
         //-->专属定制、定制书单相关
-        getSupportFragmentManager()
-                .beginTransaction()
-//                .add(R.id.fragment_container_custom_exclusive, new CustomBookTipsFragment())
-                .add(R.id.fragment_container_custom_exclusive, new CustomBookInfoFragment())
-                .commit();
+        switchCustomBookFragment();
 
+    }
+
+    /**
+     * 切换定制专属书单的Fragment
+     * 如果用户已经登录，并且存在已经定制的书籍，那么显示CustomBookInfoFragment
+     * 如果用户未登录或者没有定制书籍，那么显示CustomBookTipsFragment
+     */
+    public void switchCustomBookFragment() {
+        List<CustomBookAdapter.CustomBookInfo> customBookData = TestData.getCustomBookData(this);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (customBookData.isEmpty()) {
+            transaction.add(R.id.fragment_container_custom_exclusive, new CustomBookTipsFragment());
+        } else {
+            transaction.add(R.id.fragment_container_custom_exclusive, new CustomBookInfoFragment(customBookData));
+        }
+        transaction.commit();
     }
 
     /**
@@ -104,38 +118,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
     public static void StartMainActivity(Context context) {
         Intent intent = new Intent(context, MainActivity.class);
         context.startActivity(intent);
     }
 
-    /**
-     * 获取轮播图相关信息
-     *
-     * @return
-     */
-    private List<BannerPagerAdapter.BannerItemInfo> getBannerData() {
-        List<BannerPagerAdapter.BannerItemInfo> bannerItemInfoList = new ArrayList<>();
-        int[] itemIdArr = getResources().getIntArray(R.array.banner_item_id);
-        TypedArray drawableAyy = getResources().obtainTypedArray(R.array.banner_drawable_list);
-        if (itemIdArr.length != drawableAyy.length())
-            throw new ArrayIndexOutOfBoundsException("Array resource \"banner_item_id\" " +
-                    "and \"banner_drawable_list\" of length is not equal");
-
-        for (int i = 0; i < drawableAyy.length(); i++) {
-            BannerPagerAdapter.BannerItemInfo itemInfo =
-                    new BannerPagerAdapter.BannerItemInfo(itemIdArr[i], drawableAyy.getDrawable(i));
-            bannerItemInfoList.add(itemInfo);
-        }
-        drawableAyy.recycle();
-        return bannerItemInfoList;
-    }
 
     /**
      * 添加轮播图指示器的指示点
      */
-    private void addPointView(LinearLayout pointLayout, Context context) {
-        for (int i = 0; i < getBannerData().size(); i++) {
+    private void addPointView(LinearLayout pointLayout, Context context, int count) {
+        for (int i = 0; i < count; i++) {
             View view = new View(context);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(30, 30);
             params.leftMargin = 10;

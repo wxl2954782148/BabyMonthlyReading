@@ -27,6 +27,13 @@ import java.util.List;
 public class CustomBookInfoFragment extends Fragment {
 
     private Context context;
+    private List<CustomBookInfo> data;
+
+    public CustomBookInfoFragment(List<CustomBookInfo> data) {
+        if (data == null || data.isEmpty())
+            throw new NullPointerException("data must be not null or empty");
+        this.data = data;
+    }
 
     @Nullable
     @Override
@@ -36,7 +43,6 @@ public class CustomBookInfoFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.fragment_custom_book_info, container, false);
 
-        List<CustomBookInfo> data = getCustomBookData();
         CustomBookAdapter adapter = new CustomBookAdapter(data);
         recyclerView.setAdapter(adapter);
 
@@ -54,23 +60,5 @@ public class CustomBookInfoFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         return recyclerView;
-    }
-
-
-    private List<CustomBookInfo> getCustomBookData() {
-        List<CustomBookInfo> bookInfoList = new ArrayList<>();
-        bookInfoList.add(new CustomBookInfo(
-                1001, ContextCompat.getDrawable(context, R.drawable.book1), 199,"比利时心灵成长"
-        ));
-        bookInfoList.add(new CustomBookInfo(
-                1002, ContextCompat.getDrawable(context, R.drawable.book2), 249,"儿童摄影欣赏可"
-        ));
-        bookInfoList.add(new CustomBookInfo(
-                1003, ContextCompat.getDrawable(context, R.drawable.book3), 142,"写给孩子的人文历史"
-        ));
-        bookInfoList.add(new CustomBookInfo(
-                1004, ContextCompat.getDrawable(context, R.drawable.book1), 199,"比利时心灵成长"
-        ));
-        return bookInfoList;
     }
 }
