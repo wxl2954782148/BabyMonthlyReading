@@ -6,6 +6,12 @@ import static org.junit.Assert.*;
 
 import android.icu.number.NumberFormatter;
 
+import com.wang.babymonthlyreading.enums.AgeRangeEnum;
+import com.wang.babymonthlyreading.enums.BookClassifyInfo;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -16,8 +22,15 @@ import java.util.Locale;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
-        float a = 1.51993f;
-
-        System.out.println(String.format(Locale.CHINA,"￥ %.2f", 120.315));
+//        List<BookClassifyInfo> bookClassifyInfoList = new ArrayList<>();
+//        BookClassifyInfo.RANGE_ONE[] values = BookClassifyInfo.RANGE_ONE.values();
+//        Collections.addAll(bookClassifyInfoList,values);
+//        for (BookClassifyInfo bookClassifyInfo : bookClassifyInfoList) {
+//            System.out.println(bookClassifyInfo.getDesc());
+//        }
+        List<BookClassifyInfo> bookClassifyInfo = AgeRangeEnum.RANGE_TWO.getBookClassifyInfo();
+        for (BookClassifyInfo classifyInfo : bookClassifyInfo) {
+            System.out.println(classifyInfo.getDesc());
+        }
     }
 }

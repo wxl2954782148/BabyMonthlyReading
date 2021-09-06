@@ -9,4 +9,4 @@
     android:paddingVertical="5dp"
     android:paddingHorizontal="10dp"
     android:textAlignment="center"
-    android:textSize="@dimen/search_view_hint_size" />
+    android:textSize="@dimen/main_text_size" />

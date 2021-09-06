@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <style name="tab_age_range_style">
+        <item name="tabIndicatorColor">@color/orange</item>
+        <item name="tabSelectedTextColor">@color/orange</item>
+        <item name="tabTextColor">@color/dark_charcoal</item>
+        <item name="tabRippleColor">@color/transparent</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabMode">auto</item>
+        <item name="tabPaddingBottom">-15dp</item>
+        <item name="tabTextAppearance">@dimen/main_text_size</item>
+    </style>
 </resources>

@@ -14,4 +14,7 @@
     <string name="book_desc">比利时心灵成长…</string>
     <string name="_199_00">￥199.00</string>
     <string name="format_book_price">￥ %.2f</string>
+    <string name="all_book">全部图书</string>
+    <string name="ENLIGHTEN">启蒙</string>
+    <string name="_0">0</string>
 </resources>
