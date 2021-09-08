@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,7 @@ import com.wang.babymonthlyreading.adapter.BannerPagerAdapter;
 import com.wang.babymonthlyreading.adapter.BookClassifyAdapter;
 import com.wang.babymonthlyreading.adapter.BookListAdapter;
 import com.wang.babymonthlyreading.adapter.CustomBookAdapter;
+import com.wang.babymonthlyreading.customview.ShoppingCartButton;
 import com.wang.babymonthlyreading.data.TestData;
 import com.wang.babymonthlyreading.enums.AgeRangeEnum;
 import com.wang.babymonthlyreading.enums.BookClassifyInfo;
@@ -34,10 +36,13 @@ import com.wang.babymonthlyreading.fragment.CustomBookTipsFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private LinearLayout pointLayout;
     private BannerPagerAdapter bannerPagerAdapter;
@@ -49,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
     private ViewPager bannerPager;
     private BookClassifyAdapter bookClassifyAdapter;
+
+    /**
+     * 购物车信息
+     * key --> {@link com.wang.babymonthlyreading.entity.BookInfo#bookId
+     * value --> 购物车中书籍id对应的数量
+     */
+    private final Map<Integer, Integer> shoppingCartMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,10 +110,73 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView bookListRecycler = findViewById(R.id.recycle_book_list);
         bookListRecycler.setLayoutManager(new GridLayoutManager(this, 2));
         BookListAdapter bookListAdapter = new BookListAdapter(TestData.getBookInfoList(this));
+        bookListAdapter.setOnShoppingCartChangeListener((bookId, count) -> {
+            // 刷新ToolBar购物车图标
+            invalidateOptionsMenu();
+            //添加到购物车
+            Integer value = shoppingCartMap.get(bookId);
+            if (value != null) {
+                value += count;
+                shoppingCartMap.put(bookId, value);
+            } else {
+                shoppingCartMap.put(bookId, 1);
+            }
+        });
         bookListRecycler.setAdapter(bookListAdapter);
         bookListRecycler.addItemDecoration(new BookListAdapter.SpaceItemDecoration(20));
     }
 
+    /**
+     * 菜单项的被选中事件 TODO
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.title_meun, menu);
+        return true;
+    }
+
+    /**
+     * 当有书籍从购物车中添加或者移除时，修改选项菜单中购物车的图标:显示购物车中的书籍的数量
+     *
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.menu_item_shopping_cart);
+        ShoppingCartButton shoppingCartButton = (ShoppingCartButton) item.getActionView();
+        shoppingCartButton.setShoppingMsgText(getShoppingCartSum());
+        return true;
+    }
+
+    /**
+     * 获取购物车中的书籍总数量
+     *
+     * @return
+     */
+    public int getShoppingCartSum() {
+        int sum = 0;
+        for (Map.Entry<Integer, Integer> next : shoppingCartMap.entrySet()) {
+            Integer value = next.getValue();
+            sum += value;
+        }
+        return sum;
+    }
+
+    /**
+     * 初始化书籍分类列表，即默认的书籍分类列表
+     * {@link BookClassifyInfo.RANGE_ONE}
+     *
+     * @return
+     */
     public List<BookClassifyInfo> getBookClassifyData() {
         List<BookClassifyInfo> list = new ArrayList<>();
         BookClassifyInfo.RANGE_ONE[] values = BookClassifyInfo.RANGE_ONE.values();
@@ -146,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //刷新书籍分类
                 bookClassifyAdapter.updateData(list);
-                //TODO 刷新书籍列表
+                //TODO 刷新书籍列表(根据年龄范围、书籍分类)
             }
 
             @Override
@@ -177,22 +252,6 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    /**
-     * 菜单项的被选中事件 TODO
-     *
-     * @param item
-     * @return
-     */
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.title_meun, menu);
-        return true;
-    }
 
     @SuppressLint("NonConstantResourceId")
     public void onClick(View view) {

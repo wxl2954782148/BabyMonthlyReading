@@ -12,10 +12,12 @@
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/custom_book_btn_bg.xml" value="0.28229166666666666" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ic_add.xml" value="0.25462962962962965" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ic_add_shopping.xml" value="0.25462962962962965" />
+        <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ic_all_book_bg.xml" value="0.28229166666666666" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ic_delete.xml" value="0.28229166666666666" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ic_launcher_background.xml" value="0.28229166666666666" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ic_more.xml" value="0.28229166666666666" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ic_remove.xml" value="0.25462962962962965" />
+        <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ic_shopping_msg.xml" value="0.28229166666666666" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ico_add_shopping_cart.xml" value="0.25462962962962965" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/ico_all_book_bg.xml" value="0.28229166666666666" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/drawable/search_divider.xml" value="0.28229166666666666" />
@@ -27,6 +29,7 @@
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/activity_search.xml" value="0.4" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/activity_splash.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/custom_search_view.xml" value="0.2515625" />
+        <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/custom_shopping_car_button.xml" value="1.6" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/fragment_custom_book_info.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/fragment_custom_book_tips.xml" value="0.264" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/fragment_search.xml" value="0.26614583333333336" />
@@ -38,6 +41,7 @@
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/item_custom_book_info.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/item_search_hint.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/layout.xml" value="0.26614583333333336" />
+        <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/test.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/menu/title_meun.xml" value="0.26614583333333336" />
       </map>
     </option>

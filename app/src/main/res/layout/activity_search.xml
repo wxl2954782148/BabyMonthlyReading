@@ -17,7 +17,7 @@
         android:background="@drawable/search_view_bg"
         android:iconifiedByDefault="false"
         android:queryHint="@string/search_hint"
-        android:searchIcon="@drawable/ico_search"
+        android:searchIcon="@drawable/ic_search"
         app:layout_constraintEnd_toStartOf="@+id/btn_cancel"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />

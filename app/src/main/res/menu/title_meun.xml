@@ -5,9 +5,11 @@
         android:id="@+id/menu_item_user_info"
         android:title="@string/main"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ico_main"/>
+        android:icon="@drawable/ic_mine"/>
     <item android:id="@+id/menu_item_shopping_cart"
+        app:actionViewClass="com.wang.babymonthlyreading.customview.ShoppingCartButton"
         android:title="@string/shopping_cart"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ico_library"/>
+        android:icon="@drawable/ic_shopping_cart"
+        />
 </menu>

@@ -41,7 +41,7 @@
             android:text="@string/search_hint"
             android:textColor="#999999"
             android:textSize="@dimen/main_text_size"
-            app:drawableLeftCompat="@drawable/ico_search"
+            app:drawableLeftCompat="@drawable/ic_search"
             tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
@@ -106,8 +106,8 @@
         android:drawablePadding="5dp"
         android:text="@string/all_book"
         android:textSize="24sp"
-        app:drawableLeftCompat="@drawable/ico_all_book_bg"
-        app:drawableRightCompat="@drawable/ico_all_book_bg"
+        app:drawableLeftCompat="@drawable/ic_all_book_bg"
+        app:drawableRightCompat="@drawable/ic_all_book_bg"
         app:layout_constraintEnd_toStartOf="@+id/guideline_right"
         app:layout_constraintStart_toStartOf="@+id/guideline_left"
         app:layout_constraintTop_toBottomOf="@+id/fragment_container_custom_exclusive" />
