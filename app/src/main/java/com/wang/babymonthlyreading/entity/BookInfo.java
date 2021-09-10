@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 书籍信息相关
@@ -19,6 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 public class BookInfo {
     /**
      * 书籍ID
@@ -27,7 +29,7 @@ public class BookInfo {
     /**
      * 书籍图片
      */
-    private Drawable bookImg;
+    private int bookImgId;
     /**
      * 书籍描述
      */

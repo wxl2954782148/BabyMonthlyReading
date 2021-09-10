@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.wang.babymonthlyreading"
-        minSdk 23
+        minSdk 24
         targetSdk 30
         versionCode 1
         versionName "1.0"
@@ -29,7 +29,7 @@ android {
 }
 
 dependencies {
-
+    implementation 'com.google.code.gson:gson:2.8.7'
     implementation 'androidx.fragment:fragment:1.3.2'
     implementation 'androidx.core:core:1.3.2'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'

@@ -1,6 +1,5 @@
 package com.wang.babymonthlyreading.enums;
 
-import static com.wang.babymonthlyreading.enums.BookClassifyInfo.RANGE_Four;
 import static com.wang.babymonthlyreading.enums.BookClassifyInfo.RANGE_ONE;
 import static com.wang.babymonthlyreading.enums.BookClassifyInfo.RANGE_THREE;
 import static com.wang.babymonthlyreading.enums.BookClassifyInfo.RANGE_TWO;
@@ -33,7 +32,7 @@ public enum AgeRangeEnum {
     }, RANGE_FOUR("12-14岁", 4) {
         @Override
         public List<BookClassifyInfo> getBookClassifyInfo() {
-            RANGE_Four[] values = BookClassifyInfo.RANGE_Four.values();
+            BookClassifyInfo.RANGE_FOUR[] values = BookClassifyInfo.RANGE_FOUR.values();
             return Arrays.asList(values);
         }
     };

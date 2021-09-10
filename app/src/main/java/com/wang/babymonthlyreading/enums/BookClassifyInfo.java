@@ -1,4 +1,10 @@
 package com.wang.babymonthlyreading.enums;
+
+import com.wang.babymonthlyreading.adapter.BookListAdapter;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * 书籍分类枚举
  */
@@ -7,6 +13,13 @@ public interface BookClassifyInfo {
     int getId();
 
     String getDesc();
+
+    static BookClassifyInfo findByDesc(String desc, List<BookClassifyInfo> classifyInfoList){
+        return classifyInfoList.stream()
+                .filter(bookClassifyInfo -> bookClassifyInfo.getDesc().equals(desc))
+                .collect(Collectors.toList())
+                .get(0);
+    }
 
     /**
      * 0-3岁图书分类
@@ -96,9 +109,9 @@ public interface BookClassifyInfo {
     /**
      * 12-14岁图书分类
      */
-    enum RANGE_Four implements BookClassifyInfo {
+    enum RANGE_FOUR implements BookClassifyInfo {
         PROSE(1, "散文"),
-        poetry(2, "诗歌"),
+        POETRY(2, "诗歌"),
         LITERATURE(3, "文学"),
         HISTORY(4, "历史"),
         ;
@@ -106,7 +119,7 @@ public interface BookClassifyInfo {
         private final int id;
         private final String desc;
 
-        RANGE_Four(int id, String desc) {
+        RANGE_FOUR(int id, String desc) {
             this.id = id;
             this.desc = desc;
         }

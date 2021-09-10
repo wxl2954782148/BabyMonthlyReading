@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,6 +42,14 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
         this.bookInfoList = data;
     }
 
+    public BookListAdapter() {
+        bookInfoList = new ArrayList<>();
+    }
+
+    public void setBookInfoList(@NonNull List<BookInfo> bookInfoList) {
+        this.bookInfoList = bookInfoList;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -52,7 +61,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         BookInfo bookInfo = bookInfoList.get(position);
-        Glide.with(context).load(bookInfo.getBookImg()).into(holder.bookImg);
+        Glide.with(context).load(bookInfo.getBookImgId()).into(holder.bookImg);
         holder.bookDescText.setText(bookInfo.getBookDesc());
         holder.bookPriceText.setText(priceFormat(bookInfo.getBookPrice()));
 
@@ -65,6 +74,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
      * <p>点击该按钮时，显示cartCountText及removeCartImgb，并且设置cartCountText的text</p>
      * <p>触发事件监听onShoppingCartChangeListener：把商品信息添加到购物车{@link com.wang.babymonthlyreading.MainActivity#shoppingCartMap}</p>
      * <p>更改menu_item_shopping_cart 购物车菜单的图标，显示购物车的数量</p>
+     *
      * @param holder
      */
     private void viewOnClick(ViewHolder holder, int position) {
@@ -153,6 +163,58 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
             addCarImgb = itemView.findViewById(R.id.imgb_add_shopping_cart);
             cartCountText = itemView.findViewById(R.id.text_book_shopping_count);
 
+        }
+    }
+
+    /**
+     * 刷新数据集
+     *
+     * @param newBookInfoList
+     */
+    public void updateData(List<BookInfo> newBookInfoList) {
+//        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallBack(bookInfoList, newBookInfoList));
+//        diffResult.dispatchUpdatesTo(this);
+        bookInfoList = newBookInfoList;
+        notifyDataSetChanged();
+    }
+
+    static class DiffCallBack extends DiffUtil.Callback {
+        private final List<BookInfo> oldBookInfoList;
+        private final List<BookInfo> newBookInfoList;
+
+        public DiffCallBack(List<BookInfo> oldBookInfoList, List<BookInfo> newBookInfoList) {
+            if (oldBookInfoList == null) {
+                oldBookInfoList = new ArrayList<>();
+            }
+            if (newBookInfoList == null) {
+                newBookInfoList = new ArrayList<>();
+            }
+            this.oldBookInfoList = oldBookInfoList;
+            this.newBookInfoList = newBookInfoList;
+        }
+
+        @Override
+        public int getOldListSize() {
+            return oldBookInfoList.size();
+        }
+
+        @Override
+        public int getNewListSize() {
+            return newBookInfoList.size();
+        }
+
+        @Override
+        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+            BookInfo oldBookInfo = oldBookInfoList.get(oldItemPosition);
+            BookInfo newBookInfo = oldBookInfoList.get(newItemPosition);
+            return oldBookInfo.getBookId() == newBookInfo.getBookId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+            BookInfo oldBookInfo = oldBookInfoList.get(oldItemPosition);
+            BookInfo newBookInfo = oldBookInfoList.get(newItemPosition);
+            return oldBookInfo.equals(newBookInfo);
         }
     }
 

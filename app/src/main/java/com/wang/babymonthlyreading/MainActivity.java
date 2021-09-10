@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +28,7 @@ import com.wang.babymonthlyreading.adapter.BookListAdapter;
 import com.wang.babymonthlyreading.adapter.CustomBookAdapter;
 import com.wang.babymonthlyreading.customview.ShoppingCartButton;
 import com.wang.babymonthlyreading.data.TestData;
+import com.wang.babymonthlyreading.entity.BookInfo;
 import com.wang.babymonthlyreading.enums.AgeRangeEnum;
 import com.wang.babymonthlyreading.enums.BookClassifyInfo;
 import com.wang.babymonthlyreading.fragment.CustomBookInfoFragment;
@@ -43,7 +43,13 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-
+    /**
+     * 购物车信息
+     * key --> {@link com.wang.babymonthlyreading.entity.BookInfo#bookId
+     * value --> 购物车中书籍id对应的数量
+     */
+    private final Map<Integer, Integer> shoppingCartMap = new HashMap<>();
+    private final int SHUFFLING_CODE = 0x7D1;
     private LinearLayout pointLayout;
     private BannerPagerAdapter bannerPagerAdapter;
     /**
@@ -51,16 +57,27 @@ public class MainActivity extends AppCompatActivity {
      * 用来设置轮播图指示器的切换状态
      */
     private int bannerRelCurrentItem = 0;
-
     private ViewPager bannerPager;
-    private BookClassifyAdapter bookClassifyAdapter;
-
     /**
-     * 购物车信息
-     * key --> {@link com.wang.babymonthlyreading.entity.BookInfo#bookId
-     * value --> 购物车中书籍id对应的数量
+     * handler修改轮播图
      */
-    private final Map<Integer, Integer> shoppingCartMap = new HashMap<>();
+    Handler handler = new Handler(Looper.myLooper()) {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            if (msg.what == SHUFFLING_CODE) {
+                int currentItem = bannerPager.getCurrentItem() + 1;
+                bannerPager.setCurrentItem(currentItem);
+            }
+        }
+    };
+    private BookClassifyAdapter bookClassifyAdapter;
+    private BookListAdapter bookListAdapter;
+
+    public static void StartMainActivity(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,12 +121,28 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         bookClassifyRecycle.setLayoutManager(layoutManager);
         bookClassifyAdapter = new BookClassifyAdapter(getBookClassifyData());
+        //书籍分类选项被勾选时，刷新书籍列表
+        bookClassifyAdapter.setBookClassifyCheckedListener(new BookClassifyAdapter.BookClassifyCheckedListener() {
+            @Override
+            public void isChecked(List<BookClassifyInfo> bookClassifyInfoList) {
+                List<BookInfo> bookInfoWithPredicate = TestData.getBookInfoWithPredicate(MainActivity.this,
+                        bookInfo -> !Collections.disjoint(bookInfo.getBookClassifyInfos(), bookClassifyInfoList));
+                bookListAdapter.updateData(bookInfoWithPredicate);
+            }
+
+            @Override
+            public void cancelChecked(List<BookClassifyInfo> bookClassifyInfoList) {
+                List<BookInfo> bookInfoWithPredicate = TestData.getBookInfoWithPredicate(MainActivity.this,
+                        bookInfo -> !Collections.disjoint(bookInfo.getBookClassifyInfos(), bookClassifyInfoList));
+                bookListAdapter.updateData(bookInfoWithPredicate);
+            }
+        });
         bookClassifyRecycle.setAdapter(bookClassifyAdapter);
 
         //--> 书籍列表相关
         RecyclerView bookListRecycler = findViewById(R.id.recycle_book_list);
         bookListRecycler.setLayoutManager(new GridLayoutManager(this, 2));
-        BookListAdapter bookListAdapter = new BookListAdapter(TestData.getBookInfoList(this));
+        bookListAdapter = new BookListAdapter();
         bookListAdapter.setOnShoppingCartChangeListener((bookId, count) -> {
             // 刷新ToolBar购物车图标
             invalidateOptionsMenu();
@@ -125,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         bookListRecycler.setAdapter(bookListAdapter);
         bookListRecycler.addItemDecoration(new BookListAdapter.SpaceItemDecoration(20));
     }
+
 
     /**
      * 菜单项的被选中事件 TODO
@@ -169,6 +203,22 @@ public class MainActivity extends AppCompatActivity {
             sum += value;
         }
         return sum;
+    }
+
+    /**
+     * 切换定制专属书单的Fragment
+     * 如果用户已经登录，并且存在已经定制的书籍，那么显示CustomBookInfoFragment
+     * 如果用户未登录或者没有定制书籍，那么显示CustomBookTipsFragment
+     */
+    public void switchCustomBookFragment() {
+        List<CustomBookAdapter.CustomBookInfo> customBookData = TestData.getCustomBookData(this);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (customBookData.isEmpty()) {
+            transaction.add(R.id.fragment_container_custom_exclusive, new CustomBookTipsFragment());
+        } else {
+            transaction.add(R.id.fragment_container_custom_exclusive, new CustomBookInfoFragment(customBookData));
+        }
+        transaction.commit();
     }
 
     /**
@@ -221,7 +271,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 //刷新书籍分类
                 bookClassifyAdapter.updateData(list);
-                //TODO 刷新书籍列表(根据年龄范围、书籍分类)
             }
 
             @Override
@@ -236,22 +285,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * 切换定制专属书单的Fragment
-     * 如果用户已经登录，并且存在已经定制的书籍，那么显示CustomBookInfoFragment
-     * 如果用户未登录或者没有定制书籍，那么显示CustomBookTipsFragment
-     */
-    public void switchCustomBookFragment() {
-        List<CustomBookAdapter.CustomBookInfo> customBookData = TestData.getCustomBookData(this);
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (customBookData.isEmpty()) {
-            transaction.add(R.id.fragment_container_custom_exclusive, new CustomBookTipsFragment());
-        } else {
-            transaction.add(R.id.fragment_container_custom_exclusive, new CustomBookInfoFragment(customBookData));
-        }
-        transaction.commit();
-    }
-
 
     @SuppressLint("NonConstantResourceId")
     public void onClick(View view) {
@@ -262,13 +295,6 @@ public class MainActivity extends AppCompatActivity {
             default:
         }
     }
-
-
-    public static void StartMainActivity(Context context) {
-        Intent intent = new Intent(context, MainActivity.class);
-        context.startActivity(intent);
-    }
-
 
     /**
      * 添加轮播图指示器的指示点
@@ -317,8 +343,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private final int SHUFFLING_CODE = 0x7D1;
-
     /**
      * 设置@code{bannerPager}轮播图的自动轮播线程
      */
@@ -335,18 +359,4 @@ public class MainActivity extends AppCompatActivity {
         });
         bannerThread.start();
     }
-
-    /**
-     * handler修改轮播图
-     */
-    Handler handler = new Handler(Looper.myLooper()) {
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
-            if (msg.what == SHUFFLING_CODE) {
-                int currentItem = bannerPager.getCurrentItem() + 1;
-                bannerPager.setCurrentItem(currentItem);
-            }
-        }
-    };
 }

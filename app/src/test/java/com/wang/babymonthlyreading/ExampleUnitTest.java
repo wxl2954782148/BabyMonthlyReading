@@ -33,4 +33,11 @@ public class ExampleUnitTest {
             System.out.println(classifyInfo.getDesc());
         }
     }
+
+    @Test
+    public void test(){
+        List<BookClassifyInfo> bookClassifyInfo = AgeRangeEnum.RANGE_TWO.getBookClassifyInfo();
+        BookClassifyInfo desc = BookClassifyInfo.findByDesc("益智", bookClassifyInfo);
+        System.out.println(desc);
+    }
 }
