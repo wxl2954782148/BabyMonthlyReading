@@ -3,6 +3,7 @@ package com.wang.babymonthlyreading.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,11 +38,13 @@ public class SearchHintAdapter extends RecyclerView.Adapter<SearchHintAdapter.Vi
         addAll2InfoList(infos);
     }
 
+    private static final String TAG = "SearchHintAdapter";
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         View inflate = LayoutInflater.from(context).inflate(R.layout.item_search_hint, parent, false);
+        Log.d(TAG, "onCreateViewHolder: ");
         return new ViewHolder(inflate);
     }
 
@@ -49,6 +52,7 @@ public class SearchHintAdapter extends RecyclerView.Adapter<SearchHintAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String info = infoList.get(position);
         holder.hintText.setText(info);
+        Log.d(TAG, "onBindViewHolder: "+info);
     }
 
     /**

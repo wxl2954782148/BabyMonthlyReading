@@ -1,4 +1,4 @@
-package com.wang.babymonthlyreading;
+package com.wang.babymonthlyreading.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
+import com.wang.babymonthlyreading.R;
 import com.wang.babymonthlyreading.adapter.BannerPagerAdapter;
 import com.wang.babymonthlyreading.adapter.BookClassifyAdapter;
 import com.wang.babymonthlyreading.adapter.BookListAdapter;
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         bookClassifyRecycle.setLayoutManager(layoutManager);
         bookClassifyAdapter = new BookClassifyAdapter(getBookClassifyData());
-        //书籍分类选项被勾选时，刷新书籍列表
+        //书籍分类选项被勾选时和取消勾选时，刷新书籍列表
         bookClassifyAdapter.setBookClassifyCheckedListener(new BookClassifyAdapter.BookClassifyCheckedListener() {
             @Override
             public void isChecked(List<BookClassifyInfo> bookClassifyInfoList) {
@@ -139,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         });
         bookClassifyRecycle.setAdapter(bookClassifyAdapter);
 
-        //--> 书籍列表相关
+        //--> 书籍列表相关，初始化时使用空的数据集，由书籍分类列表的选中事件BookClassifyCheckedListener来触发刷新书籍列表
         RecyclerView bookListRecycler = findViewById(R.id.recycle_book_list);
         bookListRecycler.setLayoutManager(new GridLayoutManager(this, 2));
         bookListAdapter = new BookListAdapter();

@@ -3,11 +3,10 @@ package com.wang.babymonthlyreading.data;
 import android.content.Context;
 import android.content.res.TypedArray;
 
-import androidx.core.content.ContextCompat;
-
 import com.wang.babymonthlyreading.R;
 import com.wang.babymonthlyreading.adapter.BannerPagerAdapter;
 import com.wang.babymonthlyreading.adapter.CustomBookAdapter;
+import com.wang.babymonthlyreading.adapter.SubscribeBookAdapter;
 import com.wang.babymonthlyreading.entity.BookInfo;
 import com.wang.babymonthlyreading.enums.AgeRangeEnum;
 import com.wang.babymonthlyreading.enums.BookClassifyInfo;
@@ -30,7 +29,8 @@ public class TestData {
     public static List<BannerPagerAdapter.BannerItemInfo> getBannerData(Context context) {
         List<BannerPagerAdapter.BannerItemInfo> bannerItemInfoList = new ArrayList<>();
         int[] itemIdArr = context.getResources().getIntArray(R.array.banner_item_id);
-        TypedArray drawableAyy = context.getResources().obtainTypedArray(R.array.banner_drawable_list);
+        TypedArray drawableAyy =
+                context.getResources().obtainTypedArray(R.array.banner_drawable_list);
         if (itemIdArr.length != drawableAyy.length())
             throw new ArrayIndexOutOfBoundsException("Array resource \"banner_item_id\" " +
                     "and \"banner_drawable_list\" of length is not equal");
@@ -52,18 +52,18 @@ public class TestData {
      */
     public static List<CustomBookAdapter.CustomBookInfo> getCustomBookData(Context context) {
         List<CustomBookAdapter.CustomBookInfo> bookInfoList = new ArrayList<>();
-        bookInfoList.add(new CustomBookAdapter.CustomBookInfo(
-                1001, ContextCompat.getDrawable(context, R.drawable.book1), 199, "比利时心灵成长"
-        ));
-        bookInfoList.add(new CustomBookAdapter.CustomBookInfo(
-                1002, ContextCompat.getDrawable(context, R.drawable.book2), 249, "儿童摄影欣赏可"
-        ));
-        bookInfoList.add(new CustomBookAdapter.CustomBookInfo(
-                1003, ContextCompat.getDrawable(context, R.drawable.book3), 142, "写给孩子的人文历史"
-        ));
-        bookInfoList.add(new CustomBookAdapter.CustomBookInfo(
-                1004, ContextCompat.getDrawable(context, R.drawable.book1), 199, "比利时心灵成长"
-        ));
+//        bookInfoList.add(new CustomBookAdapter.CustomBookInfo(
+//                1001, ContextCompat.getDrawable(context, R.drawable.book1), 199, "比利时心灵成长"
+//        ));
+//        bookInfoList.add(new CustomBookAdapter.CustomBookInfo(
+//                1002, ContextCompat.getDrawable(context, R.drawable.book2), 249, "儿童摄影欣赏可"
+//        ));
+//        bookInfoList.add(new CustomBookAdapter.CustomBookInfo(
+//                1003, ContextCompat.getDrawable(context, R.drawable.book3), 142, "写给孩子的人文历史"
+//        ));
+//        bookInfoList.add(new CustomBookAdapter.CustomBookInfo(
+//                1004, ContextCompat.getDrawable(context, R.drawable.book1), 199, "比利时心灵成长"
+//        ));
         return bookInfoList;
     }
 
@@ -228,14 +228,48 @@ public class TestData {
 
     /**
      * 根据指定条件来过滤查询图书列表
+     *
      * @param context
      * @param predicate
      * @return
      */
-    public static List<BookInfo> getBookInfoWithPredicate(Context context, Predicate<BookInfo> predicate) {
+    public static List<BookInfo> getBookInfoWithPredicate(Context context,
+                                                          Predicate<BookInfo> predicate) {
         return getBookInfoList(context).stream()
                 .filter(predicate)
                 .collect(Collectors.toList());
     }
 
+    /**
+     * 获取订阅书籍列表
+     *
+     * @return
+     */
+    public static List<SubscribeBookAdapter.SubscribeBookInfo> getSubscribeBookList(Context context) {
+        List<SubscribeBookAdapter.SubscribeBookInfo> list = new ArrayList<>();
+        ArrayList<Integer> imgs = new ArrayList<>();
+        imgs.add(R.drawable.book1);
+        imgs.add(R.drawable.book2);
+        imgs.add(R.drawable.book3);
+        list.add(new SubscribeBookAdapter.SubscribeBookInfo(2001, "一岁认知书单(共30本)", false, "2–3" +
+                "岁是一个比较特别的年龄段,\n这个时期的孩子语言、\n思维和行动等能力都迅速发展，开始有自我意识，从故事内容的选择上可以从之前的三段式重复增加有简单情节变化的绘本。",
+                imgs));
+
+        ArrayList<Integer> imgs2 = new ArrayList<>();
+        imgs2.add(R.drawable.book4);
+        imgs2.add(R.drawable.book5);
+        imgs2.add(R.drawable.book6);
+        list.add(new SubscribeBookAdapter.SubscribeBookInfo(2002, "两岁认知书单(共10本)", false, "2–3" +
+                "岁是一个比较特别的年龄段,\n这个时期的孩子语言、\n思维和行动等能力都迅速发展，开始有自我意识，从故事内容的选择上可以从之前的三段式重复增加有简单情节变化的绘本。",
+                imgs2));
+
+        ArrayList<Integer> imgs3 = new ArrayList<>();
+        imgs3.add(R.drawable.book7);
+        imgs3.add(R.drawable.book8);
+        imgs3.add(R.drawable.book9);
+        list.add(new SubscribeBookAdapter.SubscribeBookInfo(2003, "两岁认知书单(共10本)", false, "2–3" +
+                "岁是一个比较特别的年龄段,\n这个时期的孩子语言、\n思维和行动等能力都迅速发展，开始有自我意识，从故事内容的选择上可以从之前的三段式重复增加有简单情节变化的绘本。",
+                imgs3));
+        return list;
+    }
 }

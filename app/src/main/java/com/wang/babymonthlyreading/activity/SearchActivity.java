@@ -1,4 +1,4 @@
-package com.wang.babymonthlyreading;
+package com.wang.babymonthlyreading.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.wang.babymonthlyreading.R;
 import com.wang.babymonthlyreading.adapter.SearchHintAdapter;
 import com.wang.babymonthlyreading.data.TestData;
 

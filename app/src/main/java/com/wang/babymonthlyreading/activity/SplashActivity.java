@@ -1,4 +1,4 @@
-package com.wang.babymonthlyreading;
+package com.wang.babymonthlyreading.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,12 +9,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.view.Window;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-
-import java.util.Objects;
+import com.wang.babymonthlyreading.R;
 
 /**
  * 闪屏页实现

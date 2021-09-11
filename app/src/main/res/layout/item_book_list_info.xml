@@ -11,8 +11,8 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
         android:contentDescription="@string/img"
+        android:scaleType="fitCenter"
         android:src="@drawable/book4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,12 +35,11 @@
         android:id="@+id/linear_book_tag"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginVertical="6dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_book_desc">
-
+        app:layout_constraintTop_toBottomOf="@+id/text_book_desc" >
         <TextView
             android:id="@+id/text_book_tag_item"
             android:textColor="@color/coffee"
@@ -50,17 +49,16 @@
             android:paddingHorizontal="8dp"
             android:background="@drawable/book_tag_bg"
             android:textSize="14sp"
-            android:text="文学" />
-
+            android:text="文学"/>
     </LinearLayout>
 
     <TextView
         android:id="@+id/text_book_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:textColor="@color/orange"
         android:text="￥ 249.00"
+        android:textColor="@color/orange"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linear_book_tag" />
 
@@ -71,8 +69,8 @@
         android:layout_marginEnd="8dp"
         android:background="@color/transparent"
         android:contentDescription="@string/img"
-        android:visibility="invisible"
         android:src="@drawable/ic_remove"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/text_book_price"
         app:layout_constraintEnd_toStartOf="@+id/text_book_shopping_count"
         app:layout_constraintTop_toTopOf="@+id/text_book_price"
@@ -83,9 +81,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:visibility="invisible"
         android:text="0"
         android:textSize="14sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/imgb_remove_shopping_cart"
         app:layout_constraintEnd_toStartOf="@+id/imgb_add_shopping_cart"
         app:layout_constraintTop_toTopOf="@+id/imgb_remove_shopping_cart" />

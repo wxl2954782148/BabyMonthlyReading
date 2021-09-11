@@ -24,7 +24,7 @@ public class BookClassifyAdapter extends RecyclerView.Adapter<BookClassifyAdapte
     private List<BookClassifyInfo> bookClassifyInfoList;
     private Context context;
     /**
-     * 当前被勾选的书籍分类
+     * 当前被勾选的书籍分类列表
      */
     private final List<BookClassifyInfo> isCheckedBookClassifyInfo = new ArrayList<>();
 
@@ -105,6 +105,7 @@ public class BookClassifyAdapter extends RecyclerView.Adapter<BookClassifyAdapte
      * 并且清空isCheckedBookClassifyInfo，
      * 因为默认勾选第一个，把第一个加入到isCheckedBookClassifyInfo
      * 并且触发bookClassifyCheckedListener事件来刷新图书列表
+     *
      * @param data
      */
     @SuppressLint("NotifyDataSetChanged")

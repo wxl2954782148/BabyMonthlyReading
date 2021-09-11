@@ -17,4 +17,7 @@
     <string name="all_book">全部图书</string>
     <string name="ENLIGHTEN">启蒙</string>
     <string name="_0">0</string>
+    <string name="subscribe_desc">2–3岁是一个比较特别的年龄段,\n这个时期的孩子语言、\n思维和行动等能力都迅速发展，开始有自我意识，从故事内容的选择上可以从之前的三段式重复增加有简单情节变化的绘本。</string>
+    <string name="subscribe">订阅</string>
+    <string name="has_subscribe">已订阅</string>
 </resources>

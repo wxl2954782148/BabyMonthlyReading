@@ -10,4 +10,13 @@
         <item name="tabPaddingBottom">-15dp</item>
         <item name="tabTextAppearance">@dimen/main_text_size</item>
     </style>
+
+
+    <style name="bookInfo_classify_style">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/coffee</item>
+        <item name="background">@drawable/book_tag_bg</item>
+        <item name="paddingEnd">8dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
 </resources>

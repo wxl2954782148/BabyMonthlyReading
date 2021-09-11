@@ -16,7 +16,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.wang.babymonthlyreading.R;
+import com.wang.babymonthlyreading.activity.MainActivity;
 import com.wang.babymonthlyreading.entity.BookInfo;
+import com.wang.babymonthlyreading.enums.BookClassifyInfo;
 import com.wang.babymonthlyreading.listener.OnShoppingCartChangeListener;
 
 import java.util.ArrayList;
@@ -64,15 +66,30 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
         Glide.with(context).load(bookInfo.getBookImgId()).into(holder.bookImg);
         holder.bookDescText.setText(bookInfo.getBookDesc());
         holder.bookPriceText.setText(priceFormat(bookInfo.getBookPrice()));
-
+//        displayBookClassifyInfos(holder.bookTagLinear, bookInfo.getBookClassifyInfos());
         viewOnClick(holder, position);
+    }
+
+    /**
+     * 显示书籍分类信息
+     * 由于没有真实数据，模拟数据有太多分类、暂停使用
+     *
+     * @param linearLayout
+     * @param list
+     */
+    private void displayBookClassifyInfos(LinearLayout linearLayout, List<BookClassifyInfo> list) {
+        for (BookClassifyInfo bookClassifyInfo : list) {
+            TextView textView = (TextView) LayoutInflater.from(context).inflate(R.layout.item_book_list_info_classify,null,false);
+            textView.setText(bookClassifyInfo.getDesc());
+            linearLayout.addView(textView);
+        }
     }
 
     /**
      * bookList内部控件的点击事件监听事件
      * 1. addCarImgb
      * <p>点击该按钮时，显示cartCountText及removeCartImgb，并且设置cartCountText的text</p>
-     * <p>触发事件监听onShoppingCartChangeListener：把商品信息添加到购物车{@link com.wang.babymonthlyreading.MainActivity#shoppingCartMap}</p>
+     * <p>触发事件监听onShoppingCartChangeListener：把商品信息添加到购物车{@link MainActivity#shoppingCartMap}</p>
      * <p>更改menu_item_shopping_cart 购物车菜单的图标，显示购物车的数量</p>
      *
      * @param holder
@@ -172,10 +189,9 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
      * @param newBookInfoList
      */
     public void updateData(List<BookInfo> newBookInfoList) {
-//        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallBack(bookInfoList, newBookInfoList));
-//        diffResult.dispatchUpdatesTo(this);
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallBack(bookInfoList, newBookInfoList));
+        diffResult.dispatchUpdatesTo(this);
         bookInfoList = newBookInfoList;
-        notifyDataSetChanged();
     }
 
     static class DiffCallBack extends DiffUtil.Callback {
@@ -206,14 +222,14 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
         @Override
         public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
             BookInfo oldBookInfo = oldBookInfoList.get(oldItemPosition);
-            BookInfo newBookInfo = oldBookInfoList.get(newItemPosition);
+            BookInfo newBookInfo = newBookInfoList.get(newItemPosition);
             return oldBookInfo.getBookId() == newBookInfo.getBookId();
         }
 
         @Override
         public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
             BookInfo oldBookInfo = oldBookInfoList.get(oldItemPosition);
-            BookInfo newBookInfo = oldBookInfoList.get(newItemPosition);
+            BookInfo newBookInfo = newBookInfoList.get(newItemPosition);
             return oldBookInfo.equals(newBookInfo);
         }
     }

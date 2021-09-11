@@ -14,6 +14,12 @@ public interface BookClassifyInfo {
 
     String getDesc();
 
+    /**
+     * 根据枚举的desc字段来查找枚举
+     * @param desc
+     * @param classifyInfoList
+     * @return
+     */
     static BookClassifyInfo findByDesc(String desc, List<BookClassifyInfo> classifyInfoList){
         return classifyInfoList.stream()
                 .filter(bookClassifyInfo -> bookClassifyInfo.getDesc().equals(desc))
