@@ -1,9 +1,9 @@
 package com.wang.babymonthlyreading.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.wang.babymonthlyreading.R;
+import com.wang.babymonthlyreading.activity.SearchResultActivity;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -39,20 +40,26 @@ public class SearchHintAdapter extends RecyclerView.Adapter<SearchHintAdapter.Vi
     }
 
     private static final String TAG = "SearchHintAdapter";
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         View inflate = LayoutInflater.from(context).inflate(R.layout.item_search_hint, parent, false);
-        Log.d(TAG, "onCreateViewHolder: ");
-        return new ViewHolder(inflate);
+        ViewHolder viewHolder = new ViewHolder(inflate);
+        viewHolder.hintText.setOnClickListener(v -> {
+            TextView textView = (TextView) v;
+            SearchResultActivity.startSearchResultActivity(context, textView.getText().toString());
+            Activity searchActivity = (Activity) this.context;
+            searchActivity.finish();
+        });
+        return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         String info = infoList.get(position);
         holder.hintText.setText(info);
-        Log.d(TAG, "onBindViewHolder: "+info);
     }
 
     /**
@@ -60,7 +67,7 @@ public class SearchHintAdapter extends RecyclerView.Adapter<SearchHintAdapter.Vi
      * 如果数据已存在，则不添加
      * 如果infoList长度大于9，那么删除最后一条数据
      * <p>
-     * 使用notifyItemInserted(0);刷新数据集的时候，第二行高度会变大，原因位置
+     * 使用notifyItemInserted(0);刷新数据集的时候，第二行高度会变大，原因未知
      *
      * @param info
      */
@@ -143,7 +150,8 @@ public class SearchHintAdapter extends RecyclerView.Adapter<SearchHintAdapter.Vi
         }
 
         @Override
-        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent,
+                                   @NonNull RecyclerView.State state) {
             int position = parent.getChildLayoutPosition(view);
             if (position % 3 == 0) {
                 outRect.right = space * 2 / 3;

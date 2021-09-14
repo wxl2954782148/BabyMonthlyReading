@@ -28,6 +28,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ * 书籍订阅信息列表适配器
+ */
 public class SubscribeBookAdapter extends RecyclerView.Adapter<SubscribeBookAdapter.ViewHolder> {
     private List<SubscribeBookInfo> subscribeBookInfoList;
     /**

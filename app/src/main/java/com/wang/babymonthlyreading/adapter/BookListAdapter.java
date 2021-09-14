@@ -91,7 +91,8 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
      * <p>点击该按钮时，显示cartCountText及removeCartImgb，并且设置cartCountText的text</p>
      * <p>触发事件监听onShoppingCartChangeListener：把商品信息添加到购物车{@link MainActivity#shoppingCartMap}</p>
      * <p>更改menu_item_shopping_cart 购物车菜单的图标，显示购物车的数量</p>
-     *
+     * 2. removeCartImgb 与addCarImgb类似
+     * TODO 3. 点击图片、标题进入详情页
      * @param holder
      */
     private void viewOnClick(ViewHolder holder, int position) {

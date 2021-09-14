@@ -15,6 +15,10 @@ import com.wang.babymonthlyreading.data.TestData;
 
 import java.util.Objects;
 
+/**
+ * 订阅书单Activity
+ * MainActivity点击 CustomBookTipsFragment中的"定制书单按钮跳转制该页面进行书单订阅"
+ */
 public class CustomBookActivity extends AppCompatActivity {
 
     private RecyclerView subscribeBookRecycler;

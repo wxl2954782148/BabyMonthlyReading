@@ -64,12 +64,14 @@ public class SearchActivity extends AppCompatActivity {
     /**
      * 搜索框的监听事件
      * 1. 添加到搜索历史
-     * TODO 2. 跳转到指定页面
+     * 2. 跳转到搜索结果页面
      */
     SearchView.OnQueryTextListener listener = new SearchView.OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
+            SearchResultActivity.startSearchResultActivity(SearchActivity.this, query);
             searchHistoryAdapter.addFirst(query);
+            finish();
             return true;
         }
 

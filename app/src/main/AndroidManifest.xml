@@ -9,9 +9,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BabyMonthlyReading">
         <activity
+            android:name=".activity.SearchResultActivity"
+            android:exported="true"
+            android:launchMode="singleTask"/>
+        <activity
             android:name=".activity.CustomBookActivity"
             android:exported="false"
-            android:parentActivityName=".activity.MainActivity"/>
+            android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true">

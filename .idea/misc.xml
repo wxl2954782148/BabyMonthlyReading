@@ -32,7 +32,9 @@
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout-v28/fragment_custom_book_tips.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/activity_custom_book.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/activity_product_list.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/activity_search.xml" value="0.4" />
+        <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/activity_search_result.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/activity_splash.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/custom_search_view.xml" value="0.2515625" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/custom_shopping_car_button.xml" value="1.6" />
@@ -47,6 +49,7 @@
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/item_book_list_info_classify.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/item_custom_book_info.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/item_search_hint.xml" value="0.26614583333333336" />
+        <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/item_search_result.xml" value="0.4" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/item_subscribe_book.xml" value="0.4" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/layout.xml" value="0.26614583333333336" />
         <entry key="..\:/androidworkspace/BabyMonthlyReading/app/src/main/res/layout/test.xml" value="0.26614583333333336" />
