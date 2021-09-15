@@ -100,6 +100,8 @@ public class TestData {
      * @return
      */
     public static List<BookInfo> getBookInfoList(Context context) {
+        String bookDetail = context.getString(R.string.book_detail);
+
         List<BookInfo> bookInfoList = new ArrayList<>();
 
         List<AgeRangeEnum> ageRangeEnums1 = new ArrayList<>();
@@ -109,7 +111,7 @@ public class TestData {
         bookClassifyInfoList1.add(BookClassifyInfo.RANGE_ONE.CHILDREN_SONG);
         bookClassifyInfoList1.add(BookClassifyInfo.RANGE_TWO.CHILDREN_LITERATURE);
         BookInfo bookInfo1 = new BookInfo(1001, R.drawable.book1,
-                "蓝风筝童书：鲑鱼的134…", 128.00f, ageRangeEnums1, bookClassifyInfoList1);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 128.00f, ageRangeEnums1, bookClassifyInfoList1);
         bookInfoList.add(bookInfo1);
 
         List<AgeRangeEnum> ageRangeEnums2 = new ArrayList<>();
@@ -117,7 +119,7 @@ public class TestData {
         ageRangeEnums2.add(AgeRangeEnum.RANGE_THREE);
         bookClassifyInfoList2.add(BookClassifyInfo.RANGE_THREE.ENCYCLOPAEDIA);
         BookInfo bookInfo2 = new BookInfo(1002, R.drawable.book2,
-                "蓝风筝童书：鲑鱼的134…", 89.00f, ageRangeEnums2, bookClassifyInfoList2);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 89.00f, ageRangeEnums2, bookClassifyInfoList2);
         bookInfoList.add(bookInfo2);
 
 
@@ -128,7 +130,7 @@ public class TestData {
         bookClassifyInfoList3.add(BookClassifyInfo.RANGE_THREE.LITERATURE);
         bookClassifyInfoList3.add(BookClassifyInfo.RANGE_FOUR.HISTORY);
         BookInfo bookInfo3 = new BookInfo(1003, R.drawable.book3,
-                "蓝风筝童书：鲑鱼的134…", 109.00f, ageRangeEnums3, bookClassifyInfoList3);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 109.00f, ageRangeEnums3, bookClassifyInfoList3);
         bookInfoList.add(bookInfo3);
 
         List<AgeRangeEnum> ageRangeEnums4 = new ArrayList<>();
@@ -138,7 +140,7 @@ public class TestData {
         bookClassifyInfoList4.add(BookClassifyInfo.RANGE_ONE.PICTURE_BOOK);
         bookClassifyInfoList4.add(BookClassifyInfo.RANGE_TWO.ENLIGHTEN);
         BookInfo bookInfo4 = new BookInfo(1004, R.drawable.book4,
-                "蓝风筝童书：鲑鱼的134…", 99.00f, ageRangeEnums4, bookClassifyInfoList4);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 99.00f, ageRangeEnums4, bookClassifyInfoList4);
         bookInfoList.add(bookInfo4);
 
         List<AgeRangeEnum> ageRangeEnums5 = new ArrayList<>();
@@ -148,7 +150,7 @@ public class TestData {
         bookClassifyInfoList5.add(BookClassifyInfo.RANGE_ONE.PICTURE_BOOK);
         bookClassifyInfoList5.add(BookClassifyInfo.RANGE_THREE.ENGLISH);
         BookInfo bookInfo5 = new BookInfo(1005, R.drawable.book5,
-                "蓝风筝童书：鲑鱼的134…", 123.00f, ageRangeEnums5, bookClassifyInfoList5);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 123.00f, ageRangeEnums5, bookClassifyInfoList5);
         bookInfoList.add(bookInfo5);
 
         List<AgeRangeEnum> ageRangeEnums6 = new ArrayList<>();
@@ -159,7 +161,7 @@ public class TestData {
         bookClassifyInfoList6.add(BookClassifyInfo.RANGE_ONE.TOY);
         bookClassifyInfoList6.add(BookClassifyInfo.RANGE_THREE.ENGLISH);
         BookInfo bookInfo6 = new BookInfo(1006, R.drawable.book6,
-                "蓝风筝童书：鲑鱼的134…", 93.00f, ageRangeEnums6, bookClassifyInfoList6);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 93.00f, ageRangeEnums6, bookClassifyInfoList6);
         bookInfoList.add(bookInfo6);
 
         List<AgeRangeEnum> ageRangeEnums7 = new ArrayList<>();
@@ -170,7 +172,7 @@ public class TestData {
         bookClassifyInfoList7.add(BookClassifyInfo.RANGE_ONE.TOY);
         bookClassifyInfoList7.add(BookClassifyInfo.RANGE_TWO.CARTOON);
         BookInfo bookInfo7 = new BookInfo(1007, R.drawable.book7,
-                "蓝风筝童书：鲑鱼的134…", 95.00f, ageRangeEnums7, bookClassifyInfoList7);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 95.00f, ageRangeEnums7, bookClassifyInfoList7);
         bookInfoList.add(bookInfo7);
 
         List<AgeRangeEnum> ageRangeEnums8 = new ArrayList<>();
@@ -181,7 +183,7 @@ public class TestData {
         bookClassifyInfoList8.add(BookClassifyInfo.RANGE_ONE.TOY);
         bookClassifyInfoList8.add(BookClassifyInfo.RANGE_TWO.CARTOON);
         BookInfo bookInfo8 = new BookInfo(1008, R.drawable.book8,
-                "蓝风筝童书：鲑鱼的134…", 65.00f, ageRangeEnums8, bookClassifyInfoList8);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 65.00f, ageRangeEnums8, bookClassifyInfoList8);
         bookInfoList.add(bookInfo8);
 
         List<AgeRangeEnum> ageRangeEnums9 = new ArrayList<>();
@@ -190,7 +192,7 @@ public class TestData {
         bookClassifyInfoList9.add(BookClassifyInfo.RANGE_ONE.PICTURE_BOOK);
         bookClassifyInfoList9.add(BookClassifyInfo.RANGE_ONE.TOY);
         BookInfo bookInfo9 = new BookInfo(1009, R.drawable.book9,
-                "蓝风筝童书：鲑鱼的134…", 165.00f, ageRangeEnums9, bookClassifyInfoList9);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 165.00f, ageRangeEnums9, bookClassifyInfoList9);
         bookInfoList.add(bookInfo9);
 
         List<AgeRangeEnum> ageRangeEnums10 = new ArrayList<>();
@@ -201,7 +203,7 @@ public class TestData {
         bookClassifyInfoList10.add(BookClassifyInfo.RANGE_ONE.TOY);
         bookClassifyInfoList10.add(BookClassifyInfo.RANGE_FOUR.POETRY);
         BookInfo bookInfo10 = new BookInfo(1010, R.drawable.book10,
-                "蓝风筝童书：鲑鱼的134…", 55.00f, ageRangeEnums10, bookClassifyInfoList10);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 55.00f, ageRangeEnums10, bookClassifyInfoList10);
         bookInfoList.add(bookInfo10);
 
         List<AgeRangeEnum> ageRangeEnums11 = new ArrayList<>();
@@ -211,7 +213,7 @@ public class TestData {
         bookClassifyInfoList11.add(BookClassifyInfo.RANGE_ONE.TOY);
         bookClassifyInfoList11.add(BookClassifyInfo.RANGE_ONE.CHILDREN_SONG);
         BookInfo bookInfo11 = new BookInfo(1011, R.drawable.book11,
-                "蓝风筝童书：鲑鱼的134…", 132.00f, ageRangeEnums11, bookClassifyInfoList11);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 132.00f, ageRangeEnums11, bookClassifyInfoList11);
         bookInfoList.add(bookInfo11);
 
         List<AgeRangeEnum> ageRangeEnums12 = new ArrayList<>();
@@ -221,9 +223,32 @@ public class TestData {
         bookClassifyInfoList12.add(BookClassifyInfo.RANGE_ONE.TOY);
         bookClassifyInfoList12.add(BookClassifyInfo.RANGE_ONE.CHILDREN_SONG);
         BookInfo bookInfo12 = new BookInfo(1012, R.drawable.book12,
-                "蓝风筝童书：鲑鱼的134…", 182.00f, ageRangeEnums12, bookClassifyInfoList12);
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 182.00f, ageRangeEnums12, bookClassifyInfoList12);
         bookInfoList.add(bookInfo12);
         return bookInfoList;
+    }
+
+    /**
+     * 根据书籍Id查询书籍信息
+     *
+     * @return
+     */
+    public static BookInfo selectBookById(Context context, int bookId) {
+        String bookDetail = context.getString(R.string.book_detail);
+        List<AgeRangeEnum> ageRangeEnums1 = new ArrayList<>();
+        List<BookClassifyInfo> bookClassifyInfoList1 = new ArrayList<>();
+        ageRangeEnums1.add(AgeRangeEnum.RANGE_ONE);
+        ageRangeEnums1.add(AgeRangeEnum.RANGE_TWO);
+        bookClassifyInfoList1.add(BookClassifyInfo.RANGE_ONE.CHILDREN_SONG);
+        bookClassifyInfoList1.add(BookClassifyInfo.RANGE_TWO.CHILDREN_LITERATURE);
+        List<Integer> imgs = new ArrayList<>();
+        imgs.add(R.drawable.book1);
+        imgs.add(R.drawable.book10);
+        imgs.add(R.drawable.book11);
+        imgs.add(R.drawable.book12);
+        BookInfo bookInfo1 = new BookInfo(1001, R.drawable.book1, imgs,
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 128.00f, ageRangeEnums1, bookClassifyInfoList1);
+        return bookInfo1;
     }
 
     /**

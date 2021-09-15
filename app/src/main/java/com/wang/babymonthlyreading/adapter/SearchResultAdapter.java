@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.wang.babymonthlyreading.R;
+import com.wang.babymonthlyreading.activity.BookDetailActivity;
 import com.wang.babymonthlyreading.entity.BookInfo;
 import com.wang.babymonthlyreading.enums.BookClassifyInfo;
 import com.wang.babymonthlyreading.listener.OnShoppingCartChangeListener;
@@ -78,7 +79,14 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
             holder.goodsCountText.setText(String.valueOf(--count));
             cartChangeListener.onShoppingCartChange(bookInfo.getBookId(), -1);
         });
+        holder.bookImg.setOnClickListener(v -> {
+            BookDetailActivity.startBookDetailActivity(context,bookInfo.getBookId() );
+        });
+        holder.bookDescText.setOnClickListener(v -> {
+            BookDetailActivity.startBookDetailActivity(context,bookInfo.getBookId() );
+        });
     }
+
 
     private int getCartCount(TextView countText) {
         String text = countText.getText().toString();

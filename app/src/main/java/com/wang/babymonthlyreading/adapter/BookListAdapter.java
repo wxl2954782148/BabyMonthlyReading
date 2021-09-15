@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.wang.babymonthlyreading.R;
+import com.wang.babymonthlyreading.activity.BookDetailActivity;
 import com.wang.babymonthlyreading.activity.MainActivity;
 import com.wang.babymonthlyreading.entity.BookInfo;
 import com.wang.babymonthlyreading.enums.BookClassifyInfo;
@@ -92,7 +93,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
      * <p>触发事件监听onShoppingCartChangeListener：把商品信息添加到购物车{@link MainActivity#shoppingCartMap}</p>
      * <p>更改menu_item_shopping_cart 购物车菜单的图标，显示购物车的数量</p>
      * 2. removeCartImgb 与addCarImgb类似
-     * TODO 3. 点击图片、标题进入详情页
+     * 3. 点击图片、标题进入详情页
      * @param holder
      */
     private void viewOnClick(ViewHolder holder, int position) {
@@ -118,18 +119,12 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
             holder.cartCountText.setText(String.valueOf(--count));
             onShoppingCartChangeListener.onShoppingCartChange(bookInfo.getBookId(), -1);
         });
-
-
-        holder.bookImg.setOnClickListener(bookInfoListener);
-        holder.bookDescText.setOnClickListener(bookInfoListener);
+        //跳转到详情页
+        holder.bookImg.setOnClickListener(v -> {
+            BookDetailActivity.startBookDetailActivity(context, bookInfoList.get(position).getBookId());
+        });
     }
 
-    /**
-     * TODO 书籍图片、描述的点击事件，跳转到详情页
-     */
-    View.OnClickListener bookInfoListener = v -> {
-
-    };
 
     /**
      * 获取item中的购物车数量
@@ -175,7 +170,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
             super(itemView);
             bookImg = itemView.findViewById(R.id.img_book);
             bookDescText = itemView.findViewById(R.id.text_book_desc);
-            bookTagLinear = itemView.findViewById(R.id.linear_book_tag);
+            bookTagLinear = itemView.findViewById(R.id.linear_book_detail_tag);
             bookPriceText = itemView.findViewById(R.id.text_book_price);
             removeCartImgb = itemView.findViewById(R.id.imgb_remove_shopping_cart);
             addCarImgb = itemView.findViewById(R.id.imgb_add_shopping_cart);

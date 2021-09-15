@@ -18,10 +18,8 @@ import com.wang.babymonthlyreading.customview.ShoppingCartButton;
 import com.wang.babymonthlyreading.data.TestData;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 展示书籍搜索页的搜索结果
@@ -35,7 +33,7 @@ public class SearchResultActivity extends AppCompatActivity {
      * key:商品id
      * value:商品数量
      */
-    private Map<Integer, Integer> cartMap = new HashMap<>();
+    private final Map<Integer, Integer> cartMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +42,13 @@ public class SearchResultActivity extends AppCompatActivity {
         initView();
     }
 
-
     private void initView() {
         Toolbar toolbar = findViewById(R.id.tbar_search_result);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+        toolbar.setNavigationOnClickListener(v -> {
+            finish();
+        });
 
         RecyclerView recyclerView = findViewById(R.id.recycle_product_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -57,10 +57,10 @@ public class SearchResultActivity extends AppCompatActivity {
         searchResultAdapter.setCartChangeListener((bookId, count) -> {
             invalidateOptionsMenu();
             Integer value = cartMap.get(bookId);
-            if (value!= null) {
+            if (value != null) {
                 value += count;
                 cartMap.put(bookId, value);
-            }else {
+            } else {
                 cartMap.put(bookId, count);
             }
         });
@@ -92,7 +92,8 @@ public class SearchResultActivity extends AppCompatActivity {
         cartButton.setShoppingMsgText(getShoppingCartSum());
         return super.onPrepareOptionsMenu(menu);
     }
-    private int getShoppingCartSum(){
+
+    private int getShoppingCartSum() {
         int sum = 0;
         for (Map.Entry<Integer, Integer> entry : cartMap.entrySet()) {
             sum += entry.getValue();
