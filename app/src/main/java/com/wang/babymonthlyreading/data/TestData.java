@@ -1,11 +1,15 @@
 package com.wang.babymonthlyreading.data;
 
+
+import static com.wang.babymonthlyreading.adapter.ShoppingCartAdapter.*;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 
 import com.wang.babymonthlyreading.R;
 import com.wang.babymonthlyreading.adapter.BannerPagerAdapter;
 import com.wang.babymonthlyreading.adapter.CustomBookAdapter;
+import com.wang.babymonthlyreading.adapter.ShoppingCartAdapter;
 import com.wang.babymonthlyreading.adapter.SubscribeBookAdapter;
 import com.wang.babymonthlyreading.entity.BookInfo;
 import com.wang.babymonthlyreading.enums.AgeRangeEnum;
@@ -296,5 +300,39 @@ public class TestData {
                 "岁是一个比较特别的年龄段,\n这个时期的孩子语言、\n思维和行动等能力都迅速发展，开始有自我意识，从故事内容的选择上可以从之前的三段式重复增加有简单情节变化的绘本。",
                 imgs3));
         return list;
+    }
+
+    public static List<ShoppingCartInfo> getShoppingInfos(Context context) {
+        String bookDetail = context.getString(R.string.book_detail);
+        List<ShoppingCartInfo> cartInfos = new ArrayList<>();
+
+        List<AgeRangeEnum> ageRangeEnums1 = new ArrayList<>();
+        List<BookClassifyInfo> bookClassifyInfoList1 = new ArrayList<>();
+        ageRangeEnums1.add(AgeRangeEnum.RANGE_ONE);
+        ageRangeEnums1.add(AgeRangeEnum.RANGE_TWO);
+        bookClassifyInfoList1.add(BookClassifyInfo.RANGE_ONE.CHILDREN_SONG);
+        bookClassifyInfoList1.add(BookClassifyInfo.RANGE_TWO.CHILDREN_LITERATURE);
+        BookInfo bookInfo1 = new BookInfo(1001, R.drawable.book1,
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 128.00f, ageRangeEnums1, bookClassifyInfoList1);
+        cartInfos.add(new ShoppingCartInfo(bookInfo1,2));
+
+        List<AgeRangeEnum> ageRangeEnums2 = new ArrayList<>();
+        List<BookClassifyInfo> bookClassifyInfoList2 = new ArrayList<>();
+        ageRangeEnums2.add(AgeRangeEnum.RANGE_THREE);
+        bookClassifyInfoList2.add(BookClassifyInfo.RANGE_THREE.ENCYCLOPAEDIA);
+        BookInfo bookInfo2 = new BookInfo(1002, R.drawable.book2,
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 89.00f, ageRangeEnums2, bookClassifyInfoList2);
+        cartInfos.add(new ShoppingCartInfo(bookInfo2,1));
+
+        List<AgeRangeEnum> ageRangeEnums3 = new ArrayList<>();
+        List<BookClassifyInfo> bookClassifyInfoList3 = new ArrayList<>();
+        ageRangeEnums3.add(AgeRangeEnum.RANGE_FOUR);
+        ageRangeEnums3.add(AgeRangeEnum.RANGE_THREE);
+        bookClassifyInfoList3.add(BookClassifyInfo.RANGE_THREE.LITERATURE);
+        bookClassifyInfoList3.add(BookClassifyInfo.RANGE_FOUR.HISTORY);
+        BookInfo bookInfo3 = new BookInfo(1003, R.drawable.book3,
+                "蓝风筝童书：鲑鱼的134…", bookDetail, 109.00f, ageRangeEnums3, bookClassifyInfoList3);
+        cartInfos.add(new ShoppingCartInfo(bookInfo3,1));
+        return cartInfos;
     }
 }

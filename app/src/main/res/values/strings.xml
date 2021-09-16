@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:color="http://schemas.android.com/apk/res-auto">
     <string name="app_name">宝贝月读</string>
     <string name="img">img</string>
     <string name="main">我的</string>
@@ -28,4 +28,6 @@
     <string name="goods_detail">商品详情</string>
     <string name="library">书库</string>
     <string name="add_library">加入书库</string>
+    <string name="vip_tips">每月可领取<span style="color:#FF870A">2</span>本定制图书</string>
+    <string name="open_vip">开通年卡</string>
 </resources>

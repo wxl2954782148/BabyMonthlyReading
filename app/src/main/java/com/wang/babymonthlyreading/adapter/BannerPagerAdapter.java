@@ -29,8 +29,9 @@ public class BannerPagerAdapter extends PagerAdapter {
     public BannerPagerAdapter(List<BannerItemInfo> infoList) {
         if (infoList == null) {
             this.infoList = new ArrayList<>();
+        } else {
+            this.infoList = infoList;
         }
-        this.infoList = infoList;
     }
 
     @NonNull

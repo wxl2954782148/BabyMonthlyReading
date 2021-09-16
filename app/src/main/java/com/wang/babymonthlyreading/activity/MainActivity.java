@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -119,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
         //--> 图书分类相关
         RecyclerView bookClassifyRecycle = findViewById(R.id.recycle_book_classify);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+                false);
         bookClassifyRecycle.setLayoutManager(layoutManager);
         bookClassifyAdapter = new BookClassifyAdapter(getBookClassifyData());
         //书籍分类选项被勾选时和取消勾选时，刷新书籍列表
@@ -127,14 +129,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void isChecked(List<BookClassifyInfo> bookClassifyInfoList) {
                 List<BookInfo> bookInfoWithPredicate = TestData.getBookInfoWithPredicate(MainActivity.this,
-                        bookInfo -> !Collections.disjoint(bookInfo.getBookClassifyInfos(), bookClassifyInfoList));
+                        bookInfo -> !Collections.disjoint(bookInfo.getBookClassifyInfos(),
+                                bookClassifyInfoList));
                 bookListAdapter.updateData(bookInfoWithPredicate);
             }
 
             @Override
             public void cancelChecked(List<BookClassifyInfo> bookClassifyInfoList) {
                 List<BookInfo> bookInfoWithPredicate = TestData.getBookInfoWithPredicate(MainActivity.this,
-                        bookInfo -> !Collections.disjoint(bookInfo.getBookClassifyInfos(), bookClassifyInfoList));
+                        bookInfo -> !Collections.disjoint(bookInfo.getBookClassifyInfos(),
+                                bookClassifyInfoList));
                 bookListAdapter.updateData(bookInfoWithPredicate);
             }
         });
@@ -217,7 +221,8 @@ public class MainActivity extends AppCompatActivity {
         if (customBookData.isEmpty()) {
             transaction.add(R.id.fragment_container_custom_exclusive, new CustomBookTipsFragment());
         } else {
-            transaction.add(R.id.fragment_container_custom_exclusive, new CustomBookInfoFragment(customBookData));
+            transaction.add(R.id.fragment_container_custom_exclusive,
+                    new CustomBookInfoFragment(customBookData));
         }
         transaction.commit();
     }

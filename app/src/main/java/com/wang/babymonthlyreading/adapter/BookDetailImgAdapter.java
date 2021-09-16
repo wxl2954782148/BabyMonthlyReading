@@ -17,9 +17,10 @@ public class BookDetailImgAdapter extends PagerAdapter {
 
     public BookDetailImgAdapter(List<Integer> imgList) {
         if (imgList == null) {
-            imgList = new ArrayList<>();
+            this.imgList = new ArrayList<>();
+        } else {
+            this.imgList = imgList;
         }
-        this.imgList = imgList;
     }
 
     @Override

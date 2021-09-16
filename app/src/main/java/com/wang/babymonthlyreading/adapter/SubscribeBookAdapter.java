@@ -32,7 +32,7 @@ import lombok.ToString;
  * 书籍订阅信息列表适配器
  */
 public class SubscribeBookAdapter extends RecyclerView.Adapter<SubscribeBookAdapter.ViewHolder> {
-    private List<SubscribeBookInfo> subscribeBookInfoList;
+    private final List<SubscribeBookInfo> subscribeBookInfoList;
     /**
      * 用户的订阅信息，用于保存用户所订阅的书籍，返回MainActivity后展示这些信息
      */
@@ -46,9 +46,11 @@ public class SubscribeBookAdapter extends RecyclerView.Adapter<SubscribeBookAdap
 
     public SubscribeBookAdapter(List<SubscribeBookInfo> list) {
         if (list == null) {
-            subscribeBookInfoList = new ArrayList<>();
+            this.subscribeBookInfoList = new ArrayList<>();
+        } else {
+            this.subscribeBookInfoList = list;
         }
-        subscribeBookInfoList = list;
+
     }
 
     @NonNull

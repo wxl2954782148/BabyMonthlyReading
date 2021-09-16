@@ -35,9 +35,10 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     public SearchResultAdapter(List<BookInfo> bookInfoList) {
         if (bookInfoList == null) {
-            bookInfoList = new ArrayList<>();
+            this.bookInfoList = new ArrayList<>();
+        } else {
+            this.bookInfoList = bookInfoList;
         }
-        this.bookInfoList = bookInfoList;
     }
 
     @NonNull
@@ -80,10 +81,10 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
             cartChangeListener.onShoppingCartChange(bookInfo.getBookId(), -1);
         });
         holder.bookImg.setOnClickListener(v -> {
-            BookDetailActivity.startBookDetailActivity(context,bookInfo.getBookId() );
+            BookDetailActivity.startBookDetailActivity(context, bookInfo.getBookId());
         });
         holder.bookDescText.setOnClickListener(v -> {
-            BookDetailActivity.startBookDetailActivity(context,bookInfo.getBookId() );
+            BookDetailActivity.startBookDetailActivity(context, bookInfo.getBookId());
         });
     }
 

@@ -20,7 +20,6 @@ import com.wang.babymonthlyreading.R;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -37,8 +36,9 @@ public class CustomBookAdapter extends RecyclerView.Adapter<CustomBookAdapter.Vi
     public CustomBookAdapter(List<CustomBookInfo> customBookInfoList) {
         if (customBookInfoList == null) {
             this.customBookInfoList = new ArrayList<>();
+        } else {
+            this.customBookInfoList = customBookInfoList;
         }
-        this.customBookInfoList = customBookInfoList;
     }
 
     @NonNull
@@ -53,6 +53,7 @@ public class CustomBookAdapter extends RecyclerView.Adapter<CustomBookAdapter.Vi
 
     /**
      * 修改每个item的宽度为屏幕的 1/3
+     *
      * @param context
      * @param item
      */
@@ -86,7 +87,8 @@ public class CustomBookAdapter extends RecyclerView.Adapter<CustomBookAdapter.Vi
      * @param newCustomBookInfoList 新的数据列表
      */
     public void updateData(List<CustomBookInfo> newCustomBookInfoList) {
-        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallBack(customBookInfoList, newCustomBookInfoList));
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallBack(customBookInfoList,
+                newCustomBookInfoList));
         diffResult.dispatchUpdatesTo(this);
         customBookInfoList = newCustomBookInfoList;
     }

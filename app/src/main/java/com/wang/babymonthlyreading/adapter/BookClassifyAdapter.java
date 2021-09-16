@@ -29,7 +29,7 @@ public class BookClassifyAdapter extends RecyclerView.Adapter<BookClassifyAdapte
     private final List<BookClassifyInfo> isCheckedBookClassifyInfo = new ArrayList<>();
 
     public BookClassifyAdapter(List<BookClassifyInfo> data) {
-        if (bookClassifyInfoList == null)
+        if (data == null)
             bookClassifyInfoList = new ArrayList<>();
         this.bookClassifyInfoList = data;
     }
