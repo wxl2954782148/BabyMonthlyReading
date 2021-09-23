@@ -19,6 +19,7 @@ import com.wang.babymonthlyreading.R;
 import com.wang.babymonthlyreading.entity.BookInfo;
 import com.wang.babymonthlyreading.enums.BookClassifyInfo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -159,10 +160,10 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            bookImg = itemView.findViewById(R.id.img_search_result_book);
-            bookDescText = itemView.findViewById(R.id.text_search_result_book_desc);
-            boolTagsLinear = itemView.findViewById(R.id.linear_search_result_tag);
-            bookPriceText = itemView.findViewById(R.id.text_search_result_book_price);
+            bookImg = itemView.findViewById(R.id.img_order_book);
+            bookDescText = itemView.findViewById(R.id.text_order_book_title);
+            boolTagsLinear = itemView.findViewById(R.id.linear_order_book_tag);
+            bookPriceText = itemView.findViewById(R.id.text_order_book_price);
             removeImgb = itemView.findViewById(R.id.imbg_search_result_remove);
             addImgb = itemView.findViewById(R.id.imbg_search_result_add);
             countText = itemView.findViewById(R.id.text_search_result_count);
@@ -176,7 +177,7 @@ public class ShoppingCartAdapter extends RecyclerView.Adapter<ShoppingCartAdapte
     @Setter
     @EqualsAndHashCode
     @ToString
-    public static class ShoppingCartInfo {
+    public static class ShoppingCartInfo implements Serializable {
         private BookInfo bookInfo;
         /**
          * 购物车中书籍的数量

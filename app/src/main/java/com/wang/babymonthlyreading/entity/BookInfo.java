@@ -1,13 +1,11 @@
 package com.wang.babymonthlyreading.entity;
 
-import android.graphics.drawable.Drawable;
-
 import com.wang.babymonthlyreading.enums.AgeRangeEnum;
 import com.wang.babymonthlyreading.enums.BookClassifyInfo;
 
+import java.io.Serializable;
 import java.util.List;
 
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +18,7 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode
 @ToString
-public class BookInfo {
+public class BookInfo implements Serializable {
     /**
      * 书籍ID
      */
@@ -48,11 +46,11 @@ public class BookInfo {
     /**
      * 书籍年龄范围
      */
-    private List<AgeRangeEnum> bookAgeRanges;
+    private transient List<AgeRangeEnum> bookAgeRanges;
     /**
      * 书籍分类
      */
-    private List<BookClassifyInfo> bookClassifyInfos;
+    private transient List<BookClassifyInfo> bookClassifyInfos;
 
 
     public BookInfo(int bookId, int bookImgId, String bookDesc, String bookDetail, Float bookPrice,

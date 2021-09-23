@@ -30,4 +30,7 @@
     <string name="add_library">加入书库</string>
     <string name="vip_tips">每月可领取<span style="color:#FF870A">2</span>本定制图书</string>
     <string name="open_vip">开通年卡</string>
+    <string name="order_detail">订单详情</string>
+    <string name="user_address">北京市北京市朝阳区 印花提议元 6层出电梯左手边往前走到头办公室前面</string>
+    <string name="address_tips">没有收货地址，请填写收货地址</string>
 </resources>

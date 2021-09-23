@@ -18,6 +18,7 @@ import com.wang.babymonthlyreading.adapter.ShoppingCartAdapter;
 import com.wang.babymonthlyreading.adapter.ShoppingCartAdapter.ShoppingCartInfo;
 import com.wang.babymonthlyreading.data.TestData;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -26,6 +27,9 @@ import java.util.Objects;
 public class ShoppingCartActivity extends AppCompatActivity {
 
     private TextView checkCountText;
+    //购物车列表信息
+    private List<ShoppingCartInfo> infos;
+    private Button submitBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +65,16 @@ public class ShoppingCartActivity extends AppCompatActivity {
                     .reduce(Integer::sum)
                     .orElse(0);
             checkCountText.setText(String.valueOf(checkedCount));
+            infos = checkedInfos;
         });
         shoppingCartRecycler.setAdapter(shoppingCartAdapter);
 
         checkCountText = findViewById(R.id.text_check_count);
 
-        //TODO 跳转到订单详情页面
-        Button submitBtn = findViewById(R.id.btn_submit);
+        // 跳转提交订单页面
+        submitBtn = findViewById(R.id.btn_submit);
         submitBtn.setOnClickListener(v -> {
-
+            SubmitOrderActivity.startSubmitOrderActivity(this, infos);
         });
     }
 

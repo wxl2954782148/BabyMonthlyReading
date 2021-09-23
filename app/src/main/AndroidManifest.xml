@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BabyMonthlyReading">
         <activity
+            android:name=".activity.SubmitOrderActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.ShoppingCartActivity"
             android:exported="true"
             android:launchMode="singleTask" />

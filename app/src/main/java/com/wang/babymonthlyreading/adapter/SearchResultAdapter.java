@@ -134,10 +134,10 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            bookImg = itemView.findViewById(R.id.img_search_result_book);
-            bookDescText = itemView.findViewById(R.id.text_search_result_book_desc);
-            bookTagsLinear = itemView.findViewById(R.id.linear_search_result_tag);
-            bookPriceText = itemView.findViewById(R.id.text_search_result_book_price);
+            bookImg = itemView.findViewById(R.id.img_order_book);
+            bookDescText = itemView.findViewById(R.id.text_order_book_title);
+            bookTagsLinear = itemView.findViewById(R.id.linear_order_book_tag);
+            bookPriceText = itemView.findViewById(R.id.text_order_book_price);
             removeGoodsImgb = itemView.findViewById(R.id.imbg_search_result_remove);
             addGoodsImgb = itemView.findViewById(R.id.imbg_search_result_add);
             goodsCountText = itemView.findViewById(R.id.text_search_result_count);
