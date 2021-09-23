@@ -12,6 +12,8 @@ import com.wang.babymonthlyreading.adapter.CustomBookAdapter;
 import com.wang.babymonthlyreading.adapter.ShoppingCartAdapter;
 import com.wang.babymonthlyreading.adapter.SubscribeBookAdapter;
 import com.wang.babymonthlyreading.entity.BookInfo;
+import com.wang.babymonthlyreading.entity.ShippingInfo;
+import com.wang.babymonthlyreading.entity.UserInfo;
 import com.wang.babymonthlyreading.enums.AgeRangeEnum;
 import com.wang.babymonthlyreading.enums.BookClassifyInfo;
 
@@ -334,5 +336,18 @@ public class TestData {
                 "蓝风筝童书：鲑鱼的134…", bookDetail, 109.00f, ageRangeEnums3, bookClassifyInfoList3);
         cartInfos.add(new ShoppingCartInfo(bookInfo3,1));
         return cartInfos;
+    }
+
+    public static UserInfo getUserInfo() {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(123456);
+        userInfo.setUserName("王朝");
+        ArrayList<ShippingInfo> shippingInfos = new ArrayList<>();
+        ShippingInfo shippingInfo = new ShippingInfo();
+        shippingInfo.setConsigneePhone("12345678910");
+        shippingInfo.setAddress("北京市北京市朝阳区 印花提议元 6层出电梯左手边往前走到头办公室前面");
+        shippingInfos.add(shippingInfo);
+        userInfo.setShippingInfos(shippingInfos);
+        return userInfo;
     }
 }
