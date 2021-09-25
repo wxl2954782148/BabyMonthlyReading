@@ -18,4 +18,27 @@
         <item>@drawable/banner3</item>
         <item>@drawable/banner4</item>
     </array>
+
+
+    <string-array name="user_center_title">
+        <item>选书订单</item>
+        <item>我的书库</item>
+        <item>收货地址</item>
+        <item>定制书单</item>
+        <item>帮助中心</item>
+    </string-array>
+    <array name="user_center_icon">
+        <item>@drawable/ic_order</item>
+        <item>@drawable/ic_library</item>
+        <item>@drawable/ic_address</item>
+        <item>@drawable/ic_book</item>
+        <item>@drawable/ic_help</item>
+    </array>
+    <string-array name="user_center_to_class">
+        <item>com.wang.babymonthlyreading.activity.OrderCenterActivity</item>
+        <item>com.wang.babymonthlyreading.activity.UserCenterActivity</item>
+        <item>com.wang.babymonthlyreading.activity.UserCenterActivity</item>
+        <item>com.wang.babymonthlyreading.activity.UserCenterActivity</item>
+        <item>com.wang.babymonthlyreading.activity.UserCenterActivity</item>
+    </string-array>
 </resources>

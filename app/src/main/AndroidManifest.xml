@@ -9,6 +9,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BabyMonthlyReading">
         <activity
+            android:name=".activity.OrderCenterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.UserCenterActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.SubmitOrderActivity"
             android:exported="true" />
         <activity
@@ -37,9 +43,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:launchMode="singleTask"
             android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
+            android:launchMode="singleTask"
             android:name=".activity.SearchActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing" />

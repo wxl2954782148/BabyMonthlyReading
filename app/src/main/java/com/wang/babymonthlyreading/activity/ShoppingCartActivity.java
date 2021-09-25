@@ -52,7 +52,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
         openVipTipsBtn.setOnClickListener(v -> {
             //TODO 跳转到开通VIP界面
         });
-        TextView openVipText = findViewById(R.id.text_open_vip_text);
+        TextView openVipText = findViewById(R.id.text_open_vip);
         String tipsContent = "每月可领取<span style=\"color:#FF870A\">" + 2 + "</span>本定制图书";
         openVipText.setText(Html.fromHtml(tipsContent, 0));
 

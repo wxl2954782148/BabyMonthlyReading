@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#0000</color>
     <color name="gray">#999999</color>
+    <color name="gray_black">#5b5b5b</color>
+    <color name="gray_white">#EEEEEE</color>
     <color name="dark_charcoal">#333333</color>
     <color name="orange">#fe564c</color>
     <color name="pink_lemonade_fizz">#ffd7d4</color>

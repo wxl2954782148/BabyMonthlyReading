@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -166,13 +165,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * 菜单项的被选中事件 TODO
+     * 菜单项的被选中事件
      *
      * @param item
      * @return
      */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_item_user_info) {
+            UserCenterActivity.startUserCenterActivity(this);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
