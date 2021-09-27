@@ -39,7 +39,7 @@ public class ShoppingCartActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        Toolbar toolbar = findViewById(R.id.tbar_shopping_cart);
+        Toolbar toolbar = findViewById(R.id.tbar_person_data);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         toolbar.setNavigationOnClickListener(v -> {

@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BabyMonthlyReading">
         <activity
+            android:name=".activity.PersonalDataActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.OrderCenterActivity"
             android:exported="true" />
         <activity
@@ -43,13 +46,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:launchMode="singleTask"
             android:name=".activity.MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
-            android:launchMode="singleTask"
             android:name=".activity.SearchActivity"
             android:exported="true"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="adjustNothing" />
     </application>
 

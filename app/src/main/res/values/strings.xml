@@ -36,4 +36,15 @@
     <string name="user_center">用户中心</string>
     <string name="select_book_order">选书订单</string>
     <string name="order_state">订单状态：<span style="color:#fe564c">已完成</span></string>
+    <string name="personal_data">个人资料</string>
+    <string name="user_name">最爱大头猫</string>
+    <string name="nick_name">昵称:</string>
+    <string name="phone">手机号:</string>
+    <string name="phone_hint">请输入手机号</string>
+    <string name="real_name">姓名:</string>
+    <string name="real_name_hint">请输入真实姓名</string>
+    <string name="sex">性别:</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="age">年龄</string>
 </resources>

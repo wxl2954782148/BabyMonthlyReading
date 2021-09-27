@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="8dp"
+    tools:context=".activity.PersonalDataActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbar_person_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/personal_data"
+            android:textColor="#333333"
+            android:textSize="@dimen/tool_bar_title_size" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbar_person_data" />
+
+    <LinearLayout
+        android:id="@+id/linear_nick_name"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/personal_data_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2">
+
+        <TextView
+            android:id="@+id/text_nick_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nick_name"
+            android:textColor="@color/gray_black" />
+
+        <EditText
+            android:id="@+id/edit_user_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@null"
+            android:ems="10"
+            android:enabled="false"
+            android:inputType="text"
+            android:text="@string/user_name"
+            android:textColor="@color/black"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_phone"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/personal_data_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_nick_name">
+
+        <TextView
+            android:id="@+id/text_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"
+            android:textColor="@color/gray_black" />
+
+        <EditText
+            android:id="@+id/edit_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@null"
+            android:ems="10"
+            android:hint="@string/phone_hint"
+            android:inputType="phone"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_real_name"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/personal_data_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_phone">
+
+        <TextView
+            android:id="@+id/text_real_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/real_name"
+            android:textColor="@color/gray_black" />
+
+        <EditText
+            android:id="@+id/edit_real_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:autofillHints=""
+            android:background="@null"
+            android:ems="10"
+            android:hint="@string/real_name_hint"
+            android:inputType="phone"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_sex"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/personal_data_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_real_name">
+
+        <TextView
+            android:id="@+id/text_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sex"
+            android:textColor="@color/gray_black" />
+
+        <RadioGroup
+            android:id="@+id/rg_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:checkedButton="@id/rb_man"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_man"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/personal_data_sex_state"
+                android:button="@null"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="2dp"
+                android:text="@string/man" />
+
+            <RadioButton
+                android:id="@+id/rb_woman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/personal_data_sex_state"
+                android:button="@null"
+                android:paddingHorizontal="24dp"
+                android:paddingVertical="2dp"
+                android:text="@string/woman" />
+        </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_age"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/personal_data_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_sex">
+
+        <TextView
+            android:id="@+id/text_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/age"
+            android:textColor="@color/gray_black" />
+
+        <NumberPicker
+            android:id="@+id/number_pick_age"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:divider="@null" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

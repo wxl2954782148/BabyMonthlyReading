@@ -6,13 +6,18 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,6 +30,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class UserCenterActivity extends AppCompatActivity {
+    private static final String TAG = "UserCenterActivity";
+    private TextView userNameText;
+
+    public static void startUserCenterActivity(Context context) {
+        Intent intent = new Intent(context, UserCenterActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +45,32 @@ public class UserCenterActivity extends AppCompatActivity {
         initView();
     }
 
+    /**
+     * 启动{@link PersonalDataActivity}的启动器
+     */
+    ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                Intent data = result.getData();
+                if (data != null && result.getResultCode() == RESULT_OK) {
+                    PersonalDataActivity.UserInfo userInfo =
+                            data.getParcelableExtra(PersonalDataActivity.PERSONAL_DATA_ACTIVITY_RESULT);
+                    Log.d(TAG, "userInfo_result" + userInfo);
+                }
+            });
+
     private void initView() {
         Toolbar toolbar = findViewById(R.id.tbar_user_center);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(v -> finish());
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
+        userNameText = findViewById(R.id.text_user_name);
+        userNameText.setOnClickListener(v -> {
+            launcher.launch(new Intent(UserCenterActivity.this, PersonalDataActivity.class));
+        });
+
         RecyclerView userCenterRecycler = findViewById(R.id.recycle_user_center);
         userCenterRecycler.setLayoutManager(new LinearLayoutManager(this));
-        userCenterRecycler.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         UserCenterAdapter adapter = new UserCenterAdapter(getAdapterInfo());
         userCenterRecycler.setAdapter(adapter);
     }
@@ -82,8 +111,4 @@ public class UserCenterActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static void startUserCenterActivity(Context context) {
-        Intent intent = new Intent(context, UserCenterActivity.class);
-        context.startActivity(intent);
-    }
 }
